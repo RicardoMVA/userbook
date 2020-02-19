@@ -1,10 +1,17 @@
 package com.br.userbook.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.br.userbook.model.Phone;
 
 @Entity
 public class User {
@@ -20,6 +27,9 @@ public class User {
 	
 	@Column(nullable = false)
 	private String password;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+	private List<Phone> phones;
 
 	public Long getId() {
 		return id;
@@ -52,4 +62,12 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public List<Phone> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
+	}	
 }
