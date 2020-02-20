@@ -24,7 +24,7 @@ public class IndexServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<User> listUser = userDao.getUsers();
 		request.setAttribute("listUser", listUser);
-		RequestDispatcher reqDis = request.getRequestDispatcher("index.jsp");
+		RequestDispatcher reqDis = request.getRequestDispatcher("landing.jsp");
 		reqDis.forward(request, response);
 	}
 
