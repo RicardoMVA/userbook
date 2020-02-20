@@ -26,12 +26,12 @@ public class Phone {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, length = 3)
 	private int ddd;
 
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = true, length = 15)
 	private String number;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, length = 30)
 	private String type;
 }
