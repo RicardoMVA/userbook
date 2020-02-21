@@ -32,7 +32,18 @@ public class User {
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
 	private List<Phone> phones;
-
+	
+	public User() {
+		
+	}
+	
+	public User(String name, String email, String password, List<Phone> phones) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.phones = phones;
+	}
+	
 	public Long getId() {
 		return id;
 	}
