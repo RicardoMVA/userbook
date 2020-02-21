@@ -20,11 +20,37 @@ public class IndexServlet extends HttpServlet {
 	
 	@Inject
 	private UserDao userDao;
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String action = request.getServletPath();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			switch (action) {
+			case "/new":
+				showCreateUser(request, response);
+				break;
+			default:
+				showAllUsers(request, response);
+				break;
+			}
+		} catch (ServletException ex) {
+			request.setAttribute("error", ex.getMessage());
+			RequestDispatcher reqDis = request.getRequestDispatcher("error.jsp");
+			reqDis.forward(request, response);
+		}
+	}
+	
+	protected void showAllUsers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<User> listUser = userDao.getUsers();
 		request.setAttribute("listUser", listUser);
 		RequestDispatcher reqDis = request.getRequestDispatcher("landing.jsp");
+		reqDis.forward(request, response);
+	}
+	
+	private void showCreateUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher reqDis = request.getRequestDispatcher("user/new.jsp");
 		reqDis.forward(request, response);
 	}
 

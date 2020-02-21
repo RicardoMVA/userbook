@@ -25,7 +25,7 @@
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Create</a>
+          <a class="nav-link" href="/new">Create</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Read</a>
