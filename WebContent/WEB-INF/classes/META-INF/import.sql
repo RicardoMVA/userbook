@@ -1,1 +1,1 @@
-INSERT INTO users(`name`, `email`, `password`)VALUES("Ricardo de Melo","ricardo@email.com","123"),("Karina Ferreira","karina@email.com","321");
+INSERT INTO users(`name`, `email`, `password`)VALUES("Ricardo de Melo","ricardo@email.com","123"),("Karina Ferreira","karina@email.com","321"),("Ivan Filho","ivan@email.com","456");
