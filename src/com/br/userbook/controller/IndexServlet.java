@@ -18,10 +18,10 @@ import com.br.userbook.dao.UserDao;
 @WebServlet("/")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private UserDao userDao;
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
@@ -41,24 +41,48 @@ public class IndexServlet extends HttpServlet {
 			reqDis.forward(request, response);
 		}
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		List<Phone> phones = null;
-		User newUser = new User(name, email, password, phones);
+
+		User newUser = new User(name, email, password);
+
 		userDao.createUser(newUser);
+
+		String[] ddds = request.getParameterValues("ddd");
+		String[] phones = request.getParameterValues("phone");
+		String[] types = request.getParameterValues("type");
+
+		for (int i = 0; i < phones.length; i++) {
+			int ddd = 0;
+
+			try {
+				ddd = Integer.parseInt(ddds[i]);
+			} catch (NumberFormatException e) {
+				throw new ServletException("Invalid DDD number.");
+			}
+
+			String phone = phones[i];
+			String type = types[i];
+
+			Phone newPhone = new Phone(newUser, ddd, phone, type);
+			userDao.createPhone(newPhone);
+		}
+
 		response.sendRedirect("/");
 	}
-	
-	protected void showAllUsers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void showAllUsers(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		List<User> listUser = userDao.getUsers();
 		request.setAttribute("listUser", listUser);
 		RequestDispatcher reqDis = request.getRequestDispatcher("landing.jsp");
 		reqDis.forward(request, response);
 	}
-	
+
 	private void showCreateUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher reqDis = request.getRequestDispatcher("user/new.jsp");

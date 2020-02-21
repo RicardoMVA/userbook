@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
+import com.br.userbook.model.Phone;
 import com.br.userbook.model.User;
 
 @Stateful
@@ -30,5 +31,9 @@ public class EJBUserDao implements UserDao {
     public void createUser(User user) {
         entityManager.persist(user);
     }
-
+    
+    @Override
+    public void createPhone(Phone phones) {
+        entityManager.persist(phones);
+    }   
 }
