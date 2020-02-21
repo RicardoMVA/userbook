@@ -37,11 +37,10 @@ public class User {
 		
 	}
 	
-	public User(String name, String email, String password, List<Phone> phones) {
+	public User(String name, String email, String password) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
-		this.phones = phones;
 	}
 	
 	public Long getId() {
