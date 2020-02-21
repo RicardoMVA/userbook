@@ -8,7 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>Index</title>
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/css/estilo.css" rel="stylesheet">
+<link href="resources/css/style.css" rel="stylesheet">
 </head>
 <body>
 
