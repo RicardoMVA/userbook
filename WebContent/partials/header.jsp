@@ -9,6 +9,7 @@
 <title>Index</title>
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/style.css" rel="stylesheet">
+<link href="resources/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
