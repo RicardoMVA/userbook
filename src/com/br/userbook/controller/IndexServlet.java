@@ -36,7 +36,7 @@ public class IndexServlet extends HttpServlet {
 			}
 		} catch (ServletException ex) {
 			request.setAttribute("error", ex.getMessage());
-			RequestDispatcher reqDis = request.getRequestDispatcher("error.jsp");
+			RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
 			reqDis.forward(request, response);
 		}
 	}
