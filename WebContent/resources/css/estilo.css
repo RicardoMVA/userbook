@@ -2,6 +2,10 @@
   box-shadow: 0px 1px 2px #414141;
 }
 
+.bg-light.navbar-bottom {
+  background-color: #e9ecef !important;
+}
+
 a.nav-link {
   text-align: center;
 }

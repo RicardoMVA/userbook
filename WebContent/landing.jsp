@@ -41,7 +41,7 @@
   </div>
 </nav>
 
-<section class="margin-top-navbar">
+<section id="top" class="margin-top-navbar">
 
   <section class="jumbotron text-center">
     <div class="container">
@@ -83,6 +83,16 @@
     </div>
   </div>
 </section>
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light navbar-bottom">
+  <div class="collapse navbar-collapse justify-content-md-center">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#top">Voltar ao topo</a>
+        </li>
+      </ul>
+    </div>
+</nav>
 
 <script src="resources/js/jquery-3.4.1.slim.min.js"></script>
 <script src="resources/js/popper.min.js"></script>
