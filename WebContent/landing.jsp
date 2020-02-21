@@ -1,6 +1,6 @@
 <%@ include file="partials/header.jsp" %>
 
-<section id="top" class="margin-top-navbar">
+<section id="top" class="padding-top-navbar">
 
   <section class="jumbotron text-center">
     <div class="container">
