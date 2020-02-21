@@ -2,7 +2,7 @@
   <div class="collapse navbar-collapse justify-content-md-center">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#top">Back to top</a>
+          <a class="nav-link" href="#top"><i class="fas fa-arrow-up"></i> Back to top</a>
         </li>
       </ul>
     </div>

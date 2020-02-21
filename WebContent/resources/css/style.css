@@ -2,6 +2,10 @@ html {
   overflow-y: scroll;
 }
 
+i {
+  margin-right: 3px;
+}
+
 #top {
   min-height: 400px;
 }
@@ -16,6 +20,7 @@ html {
 
 a.nav-link {
   text-align: center;
+  margin: 0 7px;
 }
 
 .margin-top-navbar {
