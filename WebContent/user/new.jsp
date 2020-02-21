@@ -22,6 +22,15 @@
       <label for="password">Password:</label>
       <input class="form-control" type="text" name="password" size="80"/>
 
+      <h4 class="mt-4">Phone(s):</h4>
+
+      <label for="phone">DDD:</label>
+      <input class="form-control" type="text" name="ddd" size="3"/>
+      <label for="phone">Phone:</label>
+      <input class="form-control" type="text" name="phone" size="15"/>
+      <label for="phone">Type:</label>
+      <input class="form-control" type="text" name="type" size="30"/>
+
       <br>
 
       <input type="submit" value="Save" />

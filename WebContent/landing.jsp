@@ -26,6 +26,13 @@
                 <p class="card-text"><c:out value="${user.name}" /></p>
                 <p class="card-text"><c:out value="${user.email}" /></p>
                 <p class="card-text"><c:out value="${user.password}" /></p>
+                <c:forEach var="phone" items="${user.phones}">
+                  <p class="card-text">
+                    (<c:out value="${phone.ddd}" />)
+                    <c:out value="${phone.number}" />
+                    <c:out value="${phone.type}" />
+                  </p>
+                </c:forEach>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
