@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.br.userbook.model.Phone;
 import com.br.userbook.model.User;
 import com.br.userbook.dao.UserDao;
 
@@ -39,6 +40,16 @@ public class IndexServlet extends HttpServlet {
 			RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
 			reqDis.forward(request, response);
 		}
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		List<Phone> phones = null;
+		User newUser = new User(name, email, password, phones);
+		userDao.createUser(newUser);
+		response.sendRedirect("/");
 	}
 	
 	protected void showAllUsers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
