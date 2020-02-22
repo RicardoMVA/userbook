@@ -35,7 +35,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <a type="button" class="btn btn-sm btn-outline-secondary" href="/users/view?id=<c:out value='${user.id}' />">View</a>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    <a type="button" class="btn btn-sm btn-outline-secondary" href="/users/edit?id=<c:out value='${user.id}' />">Edit</a>
                   </div>
                   <small class="text-muted">9 mins</small>
                 </div>

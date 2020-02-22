@@ -34,6 +34,9 @@ public class UserServlet extends HttpServlet {
 			case "/view":
 				showOneUser(request, response);
 				break;
+			case "/edit":
+				showEditUser(request, response);
+				break;
 			default:
 				response.sendRedirect("/");
 				break;
@@ -95,6 +98,16 @@ public class UserServlet extends HttpServlet {
 		User existingUser = userDao.getUser(id);
 		
 		RequestDispatcher reqDis = request.getRequestDispatcher("/user/view.jsp");
+		request.setAttribute("user", existingUser);
+		reqDis.forward(request, response);
+	}
+	
+	private void showEditUser(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, ServletException, IOException {
+		long id = Long.parseLong(request.getParameter("id"));
+		User existingUser = userDao.getUser(id);
+		
+		RequestDispatcher reqDis = request.getRequestDispatcher("/user/edit.jsp");
 		request.setAttribute("user", existingUser);
 		reqDis.forward(request, response);
 	}

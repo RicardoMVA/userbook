@@ -41,5 +41,10 @@ public class EJBUserDao implements UserDao {
     @Override
     public void createPhone(Phone phones) {
         entityManager.persist(phones);
-    }   
+    }
+    
+    @Override
+    public void updateUser(User user) {
+        entityManager.merge(user);
+    }
 }
