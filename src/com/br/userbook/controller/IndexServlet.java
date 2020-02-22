@@ -27,9 +27,7 @@ public class IndexServlet extends HttpServlet {
 			showAllUsers(request, response);
 
 		} catch (ServletException ex) {
-			request.setAttribute("error", ex.getMessage());
-			RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
-			reqDis.forward(request, response);
+			showException(request, response, ex);
 		}
 	}
 
@@ -40,5 +38,10 @@ public class IndexServlet extends HttpServlet {
 		RequestDispatcher reqDis = request.getRequestDispatcher("landing.jsp");
 		reqDis.forward(request, response);
 	}
-
+	
+	protected void showException(HttpServletRequest request, HttpServletResponse response, Exception ex) throws ServletException, IOException {
+		request.setAttribute("error", ex.getMessage());
+		RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
+		reqDis.forward(request, response);
+	}
 }

@@ -44,14 +44,10 @@ public class UserServlet extends HttpServlet {
 				break;
 			}
 		} catch (ServletException ex) {
-			request.setAttribute("error", ex.getMessage());
-			RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
-			reqDis.forward(request, response);
+			showException(request, response, ex);
 		}
 		catch (SQLException ex) {
-			request.setAttribute("error", ex.getMessage());
-			RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
-			reqDis.forward(request, response);
+			showException(request, response, ex);
 		}
 	}
 	
@@ -158,6 +154,12 @@ public class UserServlet extends HttpServlet {
 		
 		RequestDispatcher reqDis = request.getRequestDispatcher("/user/edit.jsp");
 		request.setAttribute("user", existingUser);
+		reqDis.forward(request, response);
+	}
+	
+	protected void showException(HttpServletRequest request, HttpServletResponse response, Exception ex) throws ServletException, IOException {
+		request.setAttribute("error", ex.getMessage());
+		RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
 		reqDis.forward(request, response);
 	}
 }
