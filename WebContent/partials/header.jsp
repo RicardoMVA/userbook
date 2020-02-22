@@ -7,9 +7,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Index</title>
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/css/style.css" rel="stylesheet">
-<link href="resources/css/all.min.css" rel="stylesheet">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/style.css" rel="stylesheet">
+<link href="/resources/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -26,7 +26,7 @@
           <a class="nav-link" href="/"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/new"><i class="fas fa-plus"></i> Create</a>
+          <a class="nav-link" href="/users/new"><i class="fas fa-plus"></i> Create</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="fas fa-glasses"></i> Read</a>
