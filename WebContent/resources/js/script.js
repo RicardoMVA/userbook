@@ -19,18 +19,21 @@ if (putForm != null) {
   })
 }
 
-const deleteBtn = document.getElementById("deleteBtn");
+const deleteBtns = document.querySelectorAll(".deleteBtn");
 
-if (deleteBtn != null) {
-  const userId = document.getElementById("userId").value;
+if (deleteBtns != null) {
+  deleteBtns.forEach((button) => {
 
-  deleteBtn.addEventListener("click", (e) => {
-    $.ajax({
-      type: 'DELETE',
-      url: '/users/delete?id=' + userId,
-      success: function(result) {
-        window.location = '/';
-      }
+    button.addEventListener("click", (e) => {
+      const userId = e.srcElement.parentNode.children[2].value
+
+      $.ajax({
+        type: 'DELETE',
+        url: '/users/delete?id=' + userId,
+        success: function(result) {
+          window.location = '/';
+        }
+      })
     })
   })
 }

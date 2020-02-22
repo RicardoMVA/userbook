@@ -36,8 +36,8 @@
                   <div class="btn-group">
                     <a type="button" class="btn btn-sm btn-outline-secondary" href="/users/view?id=<c:out value='${user.id}' />">View</a>
                     <a type="button" class="btn btn-sm btn-outline-secondary" href="/users/edit?id=<c:out value='${user.id}' />">Edit</a>
-                    <input type="hidden" id="userId" name="userId" value="<c:out value='${user.id}' />">
-                    <a type="button" id="deleteBtn" class="btn btn-sm btn-outline-secondary">Delete</a>
+                    <input type="hidden" name="userId" value="<c:out value='${user.id}' />">
+                    <a type="button" class="btn btn-sm btn-outline-secondary deleteBtn">Delete</a>
                   </div>
                   <small class="text-muted">9 mins</small>
                 </div>
