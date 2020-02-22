@@ -1,6 +1,7 @@
 package com.br.userbook.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -30,11 +31,19 @@ public class UserServlet extends HttpServlet {
 			case "/new":
 				showCreateUser(request, response);
 				break;
+			case "/view":
+				showOneUser(request, response);
+				break;
 			default:
 				response.sendRedirect("/");
 				break;
 			}
 		} catch (ServletException ex) {
+			request.setAttribute("error", ex.getMessage());
+			RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
+			reqDis.forward(request, response);
+		}
+		catch (SQLException ex) {
 			request.setAttribute("error", ex.getMessage());
 			RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
 			reqDis.forward(request, response);
@@ -77,6 +86,16 @@ public class UserServlet extends HttpServlet {
 	private void showCreateUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher reqDis = request.getRequestDispatcher("/user/new.jsp");
+		reqDis.forward(request, response);
+	}
+	
+	private void showOneUser(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, ServletException, IOException {
+		long id = Long.parseLong(request.getParameter("id"));
+		User existingUser = userDao.getUser(id);
+		
+		RequestDispatcher reqDis = request.getRequestDispatcher("/user/view.jsp");
+		request.setAttribute("user", existingUser);
 		reqDis.forward(request, response);
 	}
 }

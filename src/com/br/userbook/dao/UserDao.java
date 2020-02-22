@@ -7,6 +7,8 @@ import com.br.userbook.model.User;
 
 public interface UserDao {
     List<User> getUsers();
+    
+    User getUser(long id);
 
     void createUser(User user);
 

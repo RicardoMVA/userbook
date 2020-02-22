@@ -26,6 +26,12 @@ public class EJBUserDao implements UserDao {
             return null;
         }
     }
+    
+    @Override
+    public User getUser(long id) {
+        User existingUser = entityManager.find(User.class, id);
+        return existingUser;
+    }
 
     @Override
     public void createUser(User user) {
