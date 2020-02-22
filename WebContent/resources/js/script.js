@@ -28,7 +28,6 @@ if (deleteBtn != null) {
     $.ajax({
       type: 'DELETE',
       url: '/users/delete?id=' + userId,
-      data: $(putForm).serialize(),
       success: function(result) {
         window.location = '/';
       }
