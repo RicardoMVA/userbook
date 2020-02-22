@@ -4,7 +4,7 @@
 
   <div class="container my-5">
 
-    <form action="new" method="post">
+    <form action="/users/new" method="post">
       <h2>
         Add New User
       </h2>
