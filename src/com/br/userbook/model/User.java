@@ -30,7 +30,7 @@ public class User {
 	@Column(nullable = false, length = 80)
 	private String password;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
 	private List<Phone> phones;
 	
 	public User() {
