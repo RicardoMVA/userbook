@@ -4,7 +4,7 @@
 
   <div class="container my-5">
 
-    <form action="/users/new" method="post">
+    <form action="/users/edit" id="putForm">
       <h2>
         Edit User
       </h2>
@@ -35,7 +35,7 @@
         <br>
       </c:forEach>
 
-      <input type="submit" value="Save" />
+      <input type="submit" value="Save" id="putFormBtn"/>
 
     </form>
   </div>

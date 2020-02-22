@@ -2,6 +2,8 @@ package com.br.userbook.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
@@ -84,6 +86,44 @@ public class UserServlet extends HttpServlet {
 		}
 
 		response.sendRedirect("/");
+	}
+	
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		long id = Long.parseLong(request.getParameter("id"));
+		User existingUser = userDao.getUser(id);
+		
+		existingUser.setName(request.getParameter("name"));
+		existingUser.setEmail(request.getParameter("email"));
+		existingUser.setPassword(request.getParameter("password"));
+
+		String[] ddds = request.getParameterValues("ddd");
+		String[] phones = request.getParameterValues("phone");
+		String[] types = request.getParameterValues("type");
+		
+		List<Phone> updatedPhones = new ArrayList<>();
+
+		for (int i = 0; i < phones.length; i++) {
+			int ddd = 0;
+
+			try {
+				ddd = Integer.parseInt(ddds[i]);
+			} catch (NumberFormatException e) {
+				throw new ServletException("Invalid DDD number.");
+			}
+
+			String phone = phones[i];
+			String type = types[i];
+
+			Phone newPhone = new Phone(existingUser, ddd, phone, type);
+			updatedPhones.add(newPhone);
+		}
+		
+		existingUser.setPhones(updatedPhones);
+		
+		userDao.updateUser(existingUser);
+
+		response.setStatus(200);
 	}
 	
 	private void showCreateUser(HttpServletRequest request, HttpServletResponse response)
