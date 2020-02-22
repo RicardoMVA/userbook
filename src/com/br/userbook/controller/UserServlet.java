@@ -126,6 +126,15 @@ public class UserServlet extends HttpServlet {
 		response.setStatus(200);
 	}
 	
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		long id = Long.parseLong(request.getParameter("id"));
+		
+		userDao.deleteUser(id);
+		
+		response.setStatus(200);
+	}
+	
 	private void showCreateUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher reqDis = request.getRequestDispatcher("/user/new.jsp");

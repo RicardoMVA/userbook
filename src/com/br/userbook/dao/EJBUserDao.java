@@ -47,4 +47,10 @@ public class EJBUserDao implements UserDao {
     public void updateUser(User user) {
         entityManager.merge(user);
     }
+    
+    @Override
+    public void deleteUser(long id) {
+   		User existingUser = getUser(id);	
+    	entityManager.remove(existingUser);
+    }
 }

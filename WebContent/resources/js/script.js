@@ -18,3 +18,20 @@ if (putForm != null) {
     })
   })
 }
+
+const deleteBtn = document.getElementById("deleteBtn");
+
+if (deleteBtn != null) {
+  const userId = document.getElementById("userId").value;
+
+  deleteBtn.addEventListener("click", (e) => {
+    $.ajax({
+      type: 'DELETE',
+      url: '/users/delete?id=' + userId,
+      data: $(putForm).serialize(),
+      success: function(result) {
+        window.location = '/';
+      }
+    })
+  })
+}
