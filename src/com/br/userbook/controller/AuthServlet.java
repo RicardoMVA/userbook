@@ -1,13 +1,11 @@
 package com.br.userbook.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,9 +40,6 @@ public class AuthServlet extends HttpServlet {
 		} catch (ServletException ex) {
 			showException(request, response, ex);
 		}
-//		catch (SQLException ex) {
-//			showException(request, response, ex);
-//		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
