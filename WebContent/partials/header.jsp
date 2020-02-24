@@ -26,16 +26,10 @@
           <a class="nav-link" href="/"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/users/new"><i class="fas fa-plus"></i> Create</a>
+          <a class="nav-link" href="/users/new"><i class="fas fa-user-edit"></i> Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-glasses"></i> Read</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-redo"></i> Update</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-times"></i> Delete</a>
+          <a class="nav-link" href="/auth/login"><i class="fas fa-sign-in-alt"></i> Login</a>
         </li>
       </ul>
     </div>
