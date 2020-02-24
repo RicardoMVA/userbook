@@ -71,7 +71,13 @@ public class AuthServlet extends HttpServlet {
 
 	protected void logout(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		todo
+		HttpSession session = request.getSession(false);
+		
+		if(session != null){
+    		session.invalidate();
+    	}
+		
+    	response.sendRedirect("/auth/login");	
 	}
 
 	protected void showException(HttpServletRequest request, HttpServletResponse response, Exception ex)
