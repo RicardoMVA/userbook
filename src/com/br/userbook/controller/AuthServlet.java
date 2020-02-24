@@ -7,9 +7,11 @@ import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.br.userbook.dao.UserDao;
 
@@ -42,6 +44,23 @@ public class AuthServlet extends HttpServlet {
 //		catch (SQLException ex) {
 //			showException(request, response, ex);
 //		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {		
+		String userEmail = request.getParameter("userEmail");
+		String password = request.getParameter("password");
+
+		if (userEmail.equals("ric") && password.equals("admin")) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", "Ricardo");
+			// setting session to expire in 30 mins
+			session.setMaxInactiveInterval(30 * 60);
+			
+			response.sendRedirect("/");
+		} else {
+			response.sendRedirect("/auth/login");
+		}
 	}
 
 	protected void showLogin(HttpServletRequest request, HttpServletResponse response)
