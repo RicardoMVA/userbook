@@ -33,6 +33,24 @@ public class EJBUserDao implements UserDao {
 		return existingUser;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public User authUser(String email, String password) {
+		try {
+			List<User> existingUser = entityManager.createQuery("SELECT c FROM User c WHERE c.email = :email")
+					.setParameter("email", email).getResultList();
+
+			if (existingUser.get(0).getPassword().equals(password)) {
+				return existingUser.get(0);
+			} else {
+				return null;
+			}
+			
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+
 	@Override
 	public void createUser(User user) {
 		entityManager.persist(user);

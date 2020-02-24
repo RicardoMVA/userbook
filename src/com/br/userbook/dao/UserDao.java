@@ -9,6 +9,8 @@ public interface UserDao {
 	List<User> getUsers();
 
 	User getUser(long id);
+	
+	User authUser(String email, String password);
 
 	void createUser(User user);
 

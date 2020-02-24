@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.br.userbook.dao.UserDao;
+import com.br.userbook.model.User;
 
 @WebServlet("/auth/*")
 public class AuthServlet extends HttpServlet {
@@ -50,10 +51,12 @@ public class AuthServlet extends HttpServlet {
 			throws ServletException, IOException {		
 		String userEmail = request.getParameter("userEmail");
 		String password = request.getParameter("password");
+		
+		User user = userDao.authUser(userEmail, password);
 
-		if (userEmail.equals("ric") && password.equals("admin")) {
+		if (user != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("user", "Ricardo");
+			session.setAttribute("user", user);
 			// setting session to expire in 30 mins
 			session.setMaxInactiveInterval(30 * 60);
 			
