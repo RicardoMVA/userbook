@@ -13,44 +13,44 @@ import com.br.userbook.model.User;
 @Stateful
 public class EJBUserDao implements UserDao {
 
-    @Inject
-    private EntityManager entityManager;
+	@Inject
+	private EntityManager entityManager;
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
-    public List<User> getUsers() {
-        try {
-            List<User> listOfUser = entityManager.createQuery("FROM User").getResultList();
-            return listOfUser;
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-    
-    @Override
-    public User getUser(long id) {
-        User existingUser = entityManager.find(User.class, id);
-        return existingUser;
-    }
+	public List<User> getUsers() {
+		try {
+			List<User> listOfUser = entityManager.createQuery("FROM User").getResultList();
+			return listOfUser;
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 
-    @Override
-    public void createUser(User user) {
-        entityManager.persist(user);
-    }
-    
-    @Override
-    public void createPhone(Phone phones) {
-        entityManager.persist(phones);
-    }
-    
-    @Override
-    public void updateUser(User user) {
-        entityManager.merge(user);
-    }
-    
-    @Override
-    public void deleteUser(long id) {
-   		User existingUser = getUser(id);	
-    	entityManager.remove(existingUser);
-    }
+	@Override
+	public User getUser(long id) {
+		User existingUser = entityManager.find(User.class, id);
+		return existingUser;
+	}
+
+	@Override
+	public void createUser(User user) {
+		entityManager.persist(user);
+	}
+
+	@Override
+	public void createPhone(Phone phones) {
+		entityManager.persist(phones);
+	}
+
+	@Override
+	public void updateUser(User user) {
+		entityManager.merge(user);
+	}
+
+	@Override
+	public void deleteUser(long id) {
+		User existingUser = getUser(id);
+		entityManager.remove(existingUser);
+	}
 }

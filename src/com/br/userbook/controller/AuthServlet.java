@@ -19,11 +19,11 @@ public class AuthServlet extends HttpServlet {
 
 	@Inject
 	private UserDao userDao;
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getPathInfo();
-		
+
 		try {
 			switch (action) {
 			case "/login":
@@ -43,17 +43,20 @@ public class AuthServlet extends HttpServlet {
 //			showException(request, response, ex);
 //		}
 	}
-	
-	protected void showLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void showLogin(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher reqDis = request.getRequestDispatcher("/login.jsp");
 		reqDis.forward(request, response);
 	}
-	
-	protected void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void logout(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 //		todo
 	}
-	
-	protected void showException(HttpServletRequest request, HttpServletResponse response, Exception ex) throws ServletException, IOException {
+
+	protected void showException(HttpServletRequest request, HttpServletResponse response, Exception ex)
+			throws ServletException, IOException {
 		request.setAttribute("error", ex.getMessage());
 		RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
 		reqDis.forward(request, response);

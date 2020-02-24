@@ -20,37 +20,37 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(nullable = false, length = 80)
 	private String name;
-	
+
 	@Column(nullable = false, unique = true, length = 80)
 	private String email;
-	
+
 	@Column(nullable = false, length = 80)
 	private String password;
-	
-	@OneToMany(orphanRemoval=true, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
 	private List<Phone> phones;
-	
+
 	public User() {
-		
+
 	}
-	
+
 	public User(String name, String email, String password) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -66,7 +66,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -81,5 +81,5 @@ public class User {
 
 	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
-	}	
+	}
 }

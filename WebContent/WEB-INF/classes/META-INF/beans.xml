@@ -7,7 +7,5 @@
       http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
 	bean-discovery-mode="all">
 
-	<!-- <alternatives>
-		<class>com.br.userbook.dao.EJBUserDao</class>
-	</alternatives> -->
+	<!-- <alternatives> <class>com.br.userbook.dao.EJBUserDao</class> </alternatives> -->
 </beans>

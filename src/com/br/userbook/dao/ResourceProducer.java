@@ -6,7 +6,7 @@ import javax.persistence.PersistenceContext;
 
 public class ResourceProducer {
 	@PersistenceContext
-    @Produces
-    private EntityManager em;
+	@Produces
+	private EntityManager em;
 
 }

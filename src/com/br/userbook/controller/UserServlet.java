@@ -23,11 +23,11 @@ public class UserServlet extends HttpServlet {
 
 	@Inject
 	private UserDao userDao;
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getPathInfo();
-		
+
 		try {
 			switch (action) {
 			case "/new":
@@ -45,12 +45,11 @@ public class UserServlet extends HttpServlet {
 			}
 		} catch (ServletException ex) {
 			showException(request, response, ex);
-		}
-		catch (SQLException ex) {
+		} catch (SQLException ex) {
 			showException(request, response, ex);
 		}
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String name = request.getParameter("name");
@@ -83,12 +82,12 @@ public class UserServlet extends HttpServlet {
 
 		response.sendRedirect("/");
 	}
-	
+
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("id"));
 		User existingUser = userDao.getUser(id);
-		
+
 		existingUser.setName(request.getParameter("name"));
 		existingUser.setEmail(request.getParameter("email"));
 		existingUser.setPassword(request.getParameter("password"));
@@ -96,7 +95,7 @@ public class UserServlet extends HttpServlet {
 		String[] ddds = request.getParameterValues("ddd");
 		String[] phones = request.getParameterValues("phone");
 		String[] types = request.getParameterValues("type");
-		
+
 		List<Phone> updatedPhones = new ArrayList<>();
 
 		for (int i = 0; i < phones.length; i++) {
@@ -114,50 +113,51 @@ public class UserServlet extends HttpServlet {
 			Phone newPhone = new Phone(existingUser, ddd, phone, type);
 			updatedPhones.add(newPhone);
 		}
-		
+
 		existingUser.setPhones(updatedPhones);
-		
+
 		userDao.updateUser(existingUser);
 
 		response.setStatus(200);
 	}
-	
+
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("id"));
-		
+
 		userDao.deleteUser(id);
-		
+
 		response.setStatus(200);
 	}
-	
+
 	private void showCreateUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher reqDis = request.getRequestDispatcher("/user/new.jsp");
 		reqDis.forward(request, response);
 	}
-	
+
 	private void showOneUser(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("id"));
 		User existingUser = userDao.getUser(id);
-		
+
 		RequestDispatcher reqDis = request.getRequestDispatcher("/user/view.jsp");
 		request.setAttribute("user", existingUser);
 		reqDis.forward(request, response);
 	}
-	
+
 	private void showEditUser(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("id"));
 		User existingUser = userDao.getUser(id);
-		
+
 		RequestDispatcher reqDis = request.getRequestDispatcher("/user/edit.jsp");
 		request.setAttribute("user", existingUser);
 		reqDis.forward(request, response);
 	}
-	
-	protected void showException(HttpServletRequest request, HttpServletResponse response, Exception ex) throws ServletException, IOException {
+
+	protected void showException(HttpServletRequest request, HttpServletResponse response, Exception ex)
+			throws ServletException, IOException {
 		request.setAttribute("error", ex.getMessage());
 		RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
 		reqDis.forward(request, response);

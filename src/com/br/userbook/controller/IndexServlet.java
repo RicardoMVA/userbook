@@ -38,8 +38,9 @@ public class IndexServlet extends HttpServlet {
 		RequestDispatcher reqDis = request.getRequestDispatcher("landing.jsp");
 		reqDis.forward(request, response);
 	}
-	
-	protected void showException(HttpServletRequest request, HttpServletResponse response, Exception ex) throws ServletException, IOException {
+
+	protected void showException(HttpServletRequest request, HttpServletResponse response, Exception ex)
+			throws ServletException, IOException {
 		request.setAttribute("error", ex.getMessage());
 		RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
 		reqDis.forward(request, response);

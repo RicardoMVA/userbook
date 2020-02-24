@@ -5,12 +5,13 @@
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
 	version="2.2">
 
-	<persistence-unit name="userbookdb" transaction-type="JTA">
+	<persistence-unit name="userbookdb"
+		transaction-type="JTA">
 		<description>Userbook user database</description>
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		
+
 		<jta-data-source>java:jboss/datasources/UserbookDS</jta-data-source>
-		
+
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.jdbc.Driver" />

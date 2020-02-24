@@ -6,16 +6,15 @@ import com.br.userbook.model.Phone;
 import com.br.userbook.model.User;
 
 public interface UserDao {
-    List<User> getUsers();
-    
-    User getUser(long id);
+	List<User> getUsers();
 
-    void createUser(User user);
+	User getUser(long id);
+
+	void createUser(User user);
 
 	void createPhone(Phone phones);
-	
+
 	void updateUser(User user);
-	
+
 	void deleteUser(long id);
 }
-
