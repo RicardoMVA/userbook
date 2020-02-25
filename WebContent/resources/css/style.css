@@ -36,6 +36,31 @@ a.nav-link {
   padding-bottom: 40px;
 }
 
+.form {
+  width: 100%;
+  display: contents;
+}
+
+.ddd-col {
+  padding-right: 0;
+}
+
+.phone-col {
+  padding-left: 0;
+}
+
+.ddd {
+  width: 43px;
+}
+
+.phone {
+  width: 120px;
+}
+
+.type {
+  width: 150px;
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;

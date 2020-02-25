@@ -55,6 +55,11 @@ public class UserServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		String passwordConfirm = request.getParameter("passwordConfirm");
+		
+		if (password.equals(passwordConfirm) != true) {
+			throw new ServletException("Passwords do not match");
+		}
 
 		User newUser = new User(name, email, password);
 
