@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../partials/header.jsp" %>
 
-<section id="top" class="padding-top-navbar">
-
   <div class="container my-5">
 
     <form action="/users/new" method="post">
@@ -39,6 +37,6 @@
 
     </form>
   </div>
-</section>
+</section> <!-- closes section that is in header.jsp -->
 
 <%@ include file="../partials/footer.jsp" %>

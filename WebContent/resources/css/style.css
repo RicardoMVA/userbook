@@ -18,13 +18,22 @@ i {
   background-color: #e9ecef !important;
 }
 
+.navbar-bottom {
+  position: fixed;
+  z-index: 1030;
+  bottom: 0px;
+  width: 100%;
+  padding: 0;
+}
+
 a.nav-link {
   text-align: center;
   margin: 0 7px;
 }
 
-.padding-top-navbar {
+.padding-navbars {
   padding-top: 56px;
+  padding-bottom: 40px;
 }
 
 .form-signin {
