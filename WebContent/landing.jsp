@@ -7,8 +7,7 @@
       <h1>Userbook</h1>
       <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras at elit id urna pellentesque vestibulum vel vitae lorem. Morbi porta ex vel nulla molestie, vitae mollis purus rutrum. Nam vehicula imperdiet molestie. Aliquam vel est sed elit convallis malesuada in nec libero. Nunc nec arcu nisl.</p>
       <p>
-        <a href="#" class="btn btn-primary my-2">Register</a>
-        <a href="#" class="btn btn-secondary my-2">View All</a>
+        <a href="/users/new" class="btn btn-primary my-2">Register New User</a>
       </p>
     </div>
   </section>
@@ -37,7 +36,7 @@
                     <a type="button" class="btn btn-sm btn-outline-secondary" href="/users/view?id=<c:out value='${user.id}' />">View</a>
                     <a type="button" class="btn btn-sm btn-outline-secondary" href="/users/edit?id=<c:out value='${user.id}' />">Edit</a>
                     <input type="hidden" name="userId" value="<c:out value='${user.id}' />">
-                    <a type="button" class="btn btn-sm btn-outline-secondary deleteBtn">Delete</a>
+                    <a type="button" class="btn btn-sm btn-outline-secondary deleteBtn" href="#">Delete</a>
                   </div>
                   <small class="text-muted">9 mins</small>
                 </div>

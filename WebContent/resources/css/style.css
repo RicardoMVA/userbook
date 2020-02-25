@@ -62,8 +62,8 @@ a.nav-link {
 }
 
 #addPhone {
-  transition: color .25s ease-out;
-  -webkit-transition: color .25s ease-out;
+  transition: color .25s ease-in-out;
+  -webkit-transition: color .25s ease-in-out;
 }
 
 #addPhone:hover {
