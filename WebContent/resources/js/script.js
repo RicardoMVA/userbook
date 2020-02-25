@@ -37,3 +37,16 @@ if (deleteBtns != null) {
     })
   })
 }
+
+const addPhone = document.getElementById("addPhone");
+
+if (addPhone != null) {
+  addPhone.addEventListener("click", (e) => {
+    const phonesList = document.getElementById("phonesList");
+    const phoneForm = document.getElementById("phoneForm");
+    
+    const newPhone = phoneForm.cloneNode(true);
+
+    phonesList.appendChild(newPhone);
+  });
+}

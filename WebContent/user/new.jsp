@@ -13,49 +13,57 @@
 
         <div class="col-md-6">
           <label for="name">User Name:</label>
-          <input class="form-control" type="text" name="name" size="80"/>
+          <input class="form-control" type="text" name="name"/>
         </div>
 
         <div class="col-md-6">
           <label for="email">Email:</label>
-          <input class="form-control" type="text" name="email" size="80"/>
+          <input class="form-control" type="text" name="email"/>
         </div>
 
         <div class="col-md-6">
           <label for="password">Password:</label>
-          <input class="form-control" type="password" name="password" size="80"/>
+          <input class="form-control" type="password" name="password"/>
         </div>
 
         <div class="col-md-6">
           <label for="password">Confirm Password:</label>
-          <input class="form-control" type="password" name="passwordConfirm" size="80"/>
+          <input class="form-control" type="password" name="passwordConfirm"/>
         </div>
 
         <div class="col-md-12">
           <h4 class="mt-4">Phone(s):</h4>
         </div>
+        
+        <div id="phonesList" class="col-12 col-sm-10 col-md-6">
+          <div id="phoneForm" class="row mt-2">
+            <div class="col-2 col-sm-2 col-md-2 ddd-col">
+              <label for="ddd">DDD:</label>
+              <input class="form-control ddd" type="text" name="ddd"/>
+            </div>
 
-        <div class="col-2 col-sm-2 col-md-1 ddd-col">
-          <label for="phone">DDD:</label>
-          <input class="form-control ddd" type="text" name="ddd" size="3"/>
+            <div class="col-4 col-sm-3 col-md-4 phone-col">
+              <label for="phone">Phone:</label>
+              <input class="form-control phone" type="text" name="phone"/>
+            </div>
+
+            <div class="col-4 col-sm-4 col-md-6">
+              <label for="type">Type:</label>
+              <select class="form-control type" name="type" required>
+                <option value="" disabled selected>Select...</option>
+                <option>Residential</option>
+                <option>Cellphone</option>
+                <option>Professional</option>
+              </select>
+            </div>
+          </div>
         </div>
 
-        <div class="col-4 col-sm-3 col-md-2 phone-col">
-          <label for="phone">Phone:</label>
-          <input class="form-control phone" type="text" name="phone" size="15"/>
+        <div class="col-md-12 mt-3">
+          <p id="addPhone">Add more phones</p>
         </div>
 
-        <div class="col-4 col-sm-4 col-md-2">
-          <label for="type">Type:</label>
-          <select class="form-control type" name="type" required>
-            <option value="" disabled selected>Select...</option>
-            <option>Residential</option>
-            <option>Cellphone</option>
-            <option>Professional</option>
-          </select>
-        </div>
-
-        <div class="col-md-12 mt-5">
+        <div class="col-md-12 mt-3">
           <input type="submit" value="Save" />
         </div>
 

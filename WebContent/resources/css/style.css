@@ -61,6 +61,16 @@ a.nav-link {
   width: 150px;
 }
 
+#addPhone {
+  transition: color .25s ease-out;
+  -webkit-transition: color .25s ease-out;
+}
+
+#addPhone:hover {
+  color: #9e9e9e;
+  cursor: pointer;
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;
