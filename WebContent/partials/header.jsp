@@ -28,6 +28,9 @@
         <c:choose>
           <c:when test="${sessionScope.user != null}">
             <li class="nav-item">
+              <a class="nav-link" href="/users/new"><i class="fas fa-user-edit"></i> New</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/users/view?id=<c:out value='${sessionScope.user.id}' />"><i class="fas fa-user"></i> <c:out value="${sessionScope.user.name}" /></a>
             </li>
             <li class="nav-item">
@@ -36,7 +39,7 @@
           </c:when>
           <c:otherwise>
             <li class="nav-item">
-              <a class="nav-link" href="/users/new"><i class="fas fa-user-edit"></i> Register</a>
+              <a class="nav-link" href="/users/new"><i class="fas fa-user-edit"></i> New</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/auth/login"><i class="fas fa-sign-in-alt"></i> Login</a>
