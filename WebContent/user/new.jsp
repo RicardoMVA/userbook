@@ -23,12 +23,12 @@
 
         <div class="col-md-6">
           <label for="password">Password:</label>
-          <input class="form-control" type="text" name="password" size="80"/>
+          <input class="form-control" type="password" name="password" size="80"/>
         </div>
 
         <div class="col-md-6">
           <label for="password">Confirm Password:</label>
-          <input class="form-control" type="text" name="passwordConfirm" size="80"/>
+          <input class="form-control" type="password" name="passwordConfirm" size="80"/>
         </div>
 
         <div class="col-md-12">
