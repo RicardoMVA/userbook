@@ -29,14 +29,15 @@ public class AuthFilter implements Filter {
 
 		boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
 		boolean isLoginRequest = httpRequest.getRequestURI().equals("/auth/login");
+		boolean isRegisterRequest = httpRequest.getRequestURI().equals("/users/new");
 
 		if (isLoggedIn && isLoginRequest) {
 //			the user is already logged in and he's trying to login again
 //			so this redirects to homepage
 			httpResponse.sendRedirect("/");
 
-		} else if (isLoggedIn || isLoginRequest) {
-//			is either logged, or trying to login, so continues the filter chain
+		} else if (isLoggedIn || isLoginRequest || isRegisterRequest) {
+//			is either logged, or trying to login or register, so continues the filter chain
 			chain.doFilter(request, response);
 
 		} else {
