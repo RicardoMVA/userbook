@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJBException;
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,7 +46,7 @@ public class UserServlet extends HttpServlet {
 			}
 		} catch (ServletException ex) {
 			showException(request, response, ex);
-		} catch (SQLException ex) {
+		} catch (EJBException ex) {
 			showException(request, response, ex);
 		} catch (Exception ex) {
 			showException(request, response, ex);
@@ -90,6 +91,8 @@ public class UserServlet extends HttpServlet {
 
 			response.sendRedirect("/");
 
+		} catch (EJBException ex) {
+			showException(request, response, ex);
 		} catch (Exception ex) {
 			showException(request, response, ex);
 		}
@@ -139,6 +142,8 @@ public class UserServlet extends HttpServlet {
 
 			response.setStatus(200);
 
+		} catch (EJBException ex) {
+			showException(request, response, ex);
 		} catch (Exception ex) {
 			showException(request, response, ex);
 		}
@@ -152,6 +157,8 @@ public class UserServlet extends HttpServlet {
 			userDao.deleteUser(id);
 
 			response.setStatus(200);
+		} catch (EJBException ex) {
+			showException(request, response, ex);
 		} catch (Exception ex) {
 			showException(request, response, ex);
 		}

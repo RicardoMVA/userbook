@@ -3,6 +3,7 @@ package com.br.userbook.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ejb.EJBException;
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,6 +28,8 @@ public class IndexServlet extends HttpServlet {
 			showAllUsers(request, response);
 
 		} catch (ServletException ex) {
+			showException(request, response, ex);
+		} catch (EJBException ex) {
 			showException(request, response, ex);
 		} catch (Exception ex) {
 			showException(request, response, ex);

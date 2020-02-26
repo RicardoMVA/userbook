@@ -2,6 +2,7 @@ package com.br.userbook.controller;
 
 import java.io.IOException;
 
+import javax.ejb.EJBException;
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -62,6 +63,8 @@ public class AuthServlet extends HttpServlet {
 			} else {
 				response.sendRedirect("/auth/login");
 			}
+		} catch (EJBException ex) {
+			showException(request, response, ex);
 		} catch (Exception ex) {
 			showException(request, response, ex);
 		}
