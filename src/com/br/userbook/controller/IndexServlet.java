@@ -28,6 +28,8 @@ public class IndexServlet extends HttpServlet {
 
 		} catch (ServletException ex) {
 			showException(request, response, ex);
+		} catch (Exception ex) {
+			showException(request, response, ex);
 		}
 	}
 

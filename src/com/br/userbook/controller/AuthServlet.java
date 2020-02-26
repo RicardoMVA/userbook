@@ -39,25 +39,31 @@ public class AuthServlet extends HttpServlet {
 			}
 		} catch (ServletException ex) {
 			showException(request, response, ex);
+		} catch (Exception ex) {
+			showException(request, response, ex);
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {		
-		String userEmail = request.getParameter("userEmail");
-		String password = request.getParameter("password");
-		
-		User user = userDao.authUser(userEmail, password);
+			throws ServletException, IOException {
+		try {
+			String userEmail = request.getParameter("userEmail");
+			String password = request.getParameter("password");
 
-		if (user != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			// setting session to expire in 30 mins
-			session.setMaxInactiveInterval(30 * 60);
-			
-			response.sendRedirect("/");
-		} else {
-			response.sendRedirect("/auth/login");
+			User user = userDao.authUser(userEmail, password);
+
+			if (user != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
+				// setting session to expire in 30 mins
+				session.setMaxInactiveInterval(30 * 60);
+
+				response.sendRedirect("/");
+			} else {
+				response.sendRedirect("/auth/login");
+			}
+		} catch (Exception ex) {
+			showException(request, response, ex);
 		}
 	}
 
@@ -70,12 +76,12 @@ public class AuthServlet extends HttpServlet {
 	protected void logout(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		
-		if(session != null){
-    		session.invalidate();
-    	}
-		
-    	response.sendRedirect("/auth/login");	
+
+		if (session != null) {
+			session.invalidate();
+		}
+
+		response.sendRedirect("/auth/login");
 	}
 
 	protected void showException(HttpServletRequest request, HttpServletResponse response, Exception ex)

@@ -47,92 +47,108 @@ public class UserServlet extends HttpServlet {
 			showException(request, response, ex);
 		} catch (SQLException ex) {
 			showException(request, response, ex);
+		} catch (Exception ex) {
+			showException(request, response, ex);
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String passwordConfirm = request.getParameter("passwordConfirm");
-		
-		if (password.equals(passwordConfirm) != true) {
-			throw new ServletException("Passwords do not match");
-		}
+		try {
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+			String passwordConfirm = request.getParameter("passwordConfirm");
 
-		User newUser = new User(name, email, password);
-
-		userDao.createUser(newUser);
-
-		String[] ddds = request.getParameterValues("ddd");
-		String[] phones = request.getParameterValues("phone");
-		String[] types = request.getParameterValues("type");
-
-		for (int i = 0; i < phones.length; i++) {
-			int ddd = 0;
-
-			try {
-				ddd = Integer.parseInt(ddds[i]);
-			} catch (NumberFormatException e) {
-				throw new ServletException("Invalid DDD number.");
+			if (password.equals(passwordConfirm) != true) {
+				throw new ServletException("Passwords do not match");
 			}
 
-			String phone = phones[i];
-			String type = types[i];
+			User newUser = new User(name, email, password);
 
-			Phone newPhone = new Phone(newUser, ddd, phone, type);
-			userDao.createPhone(newPhone);
+			userDao.createUser(newUser);
+
+			String[] ddds = request.getParameterValues("ddd");
+			String[] phones = request.getParameterValues("phone");
+			String[] types = request.getParameterValues("type");
+
+			for (int i = 0; i < phones.length; i++) {
+				int ddd = 0;
+
+				try {
+					ddd = Integer.parseInt(ddds[i]);
+				} catch (NumberFormatException e) {
+					throw new ServletException("Invalid DDD number.");
+				}
+
+				String phone = phones[i];
+				String type = types[i];
+
+				Phone newPhone = new Phone(newUser, ddd, phone, type);
+				userDao.createPhone(newPhone);
+			}
+
+			response.sendRedirect("/");
+
+		} catch (Exception ex) {
+			showException(request, response, ex);
 		}
-
-		response.sendRedirect("/");
 	}
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		long id = Long.parseLong(request.getParameter("id"));
-		User existingUser = userDao.getUser(id);
+		try {
+			long id = Long.parseLong(request.getParameter("id"));
+			User existingUser = userDao.getUser(id);
 
-		existingUser.setName(request.getParameter("name"));
-		existingUser.setEmail(request.getParameter("email"));
-		existingUser.setPassword(request.getParameter("password"));
+			existingUser.setName(request.getParameter("name"));
+			existingUser.setEmail(request.getParameter("email"));
+			existingUser.setPassword(request.getParameter("password"));
 
-		String[] ddds = request.getParameterValues("ddd");
-		String[] phones = request.getParameterValues("phone");
-		String[] types = request.getParameterValues("type");
+			String[] ddds = request.getParameterValues("ddd");
+			String[] phones = request.getParameterValues("phone");
+			String[] types = request.getParameterValues("type");
 
-		List<Phone> updatedPhones = new ArrayList<>();
+			List<Phone> updatedPhones = new ArrayList<>();
 
-		for (int i = 0; i < phones.length; i++) {
-			int ddd = 0;
+			for (int i = 0; i < phones.length; i++) {
+				int ddd = 0;
 
-			try {
-				ddd = Integer.parseInt(ddds[i]);
-			} catch (NumberFormatException e) {
-				throw new ServletException("Invalid DDD number.");
+				try {
+					ddd = Integer.parseInt(ddds[i]);
+				} catch (NumberFormatException e) {
+					throw new ServletException("Invalid DDD number.");
+				}
+
+				String phone = phones[i];
+				String type = types[i];
+
+				Phone newPhone = new Phone(existingUser, ddd, phone, type);
+				updatedPhones.add(newPhone);
 			}
 
-			String phone = phones[i];
-			String type = types[i];
+			existingUser.setPhones(updatedPhones);
 
-			Phone newPhone = new Phone(existingUser, ddd, phone, type);
-			updatedPhones.add(newPhone);
+			userDao.updateUser(existingUser);
+
+			response.setStatus(200);
+
+		} catch (Exception ex) {
+			showException(request, response, ex);
 		}
-
-		existingUser.setPhones(updatedPhones);
-
-		userDao.updateUser(existingUser);
-
-		response.setStatus(200);
 	}
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		long id = Long.parseLong(request.getParameter("id"));
+		try {
+			long id = Long.parseLong(request.getParameter("id"));
 
-		userDao.deleteUser(id);
+			userDao.deleteUser(id);
 
-		response.setStatus(200);
+			response.setStatus(200);
+		} catch (Exception ex) {
+			showException(request, response, ex);
+		}
 	}
 
 	private void showCreateUser(HttpServletRequest request, HttpServletResponse response)
