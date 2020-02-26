@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.br.userbook.model.User;
@@ -25,14 +29,24 @@ public class Phone {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-
-	@Column(nullable = false, length = 3)
+	
+	@NotNull(message = "DDD cannot be null")
+	@NotEmpty(message = "DDD cannot be empty")
+	@Pattern(regexp = "[0-9]*", message = "DDD has invalid characters")
+	@Size(min = 2, max = 2, message = "DDD must have only 2 numbers")
+	@Column(nullable = false, length = 2)
 	private int ddd;
-
-	@Column(nullable = false, unique = true, length = 15)
+	
+	@NotNull(message = "Phone number cannot be null")
+	@NotEmpty(message = "Phone number cannot be empty")
+	@Pattern(regexp = "[0-9]*", message = "Phone number has invalid characters")
+	@Size(min = 8, max = 9, message = "Phone number must have between 8 and 9 numbers")
+	@Column(nullable = false, unique = true, length = 9)
 	private String number;
-
-	@Column(nullable = false, length = 30)
+	
+	@NotNull(message = "Phone type cannot be null")
+	@NotEmpty(message = "Phone type cannot be empty")
+	@Column(nullable = false, length = 20)
 	private String type;
 
 	public Phone() {
