@@ -51,5 +51,5 @@
   </div>
 </nav>
 
-<section id="top" class="padding-navbars">
+<div id="top" class="padding-navbar-top"></div>
   

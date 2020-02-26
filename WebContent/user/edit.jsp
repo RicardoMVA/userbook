@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../partials/header.jsp" %>
 
+<section>
   <div class="container my-5">
 
     <form action="/users/edit" id="putForm">
@@ -39,6 +40,6 @@
 
     </form>
   </div>
-</section> <!-- closes section that is in header.jsp -->
+</section>
 
 <%@ include file="../partials/footer.jsp" %>

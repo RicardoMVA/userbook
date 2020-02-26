@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../partials/header.jsp" %>
 
+<section>
   <div class="container my-5">
 
     <div class="row">
@@ -70,6 +71,6 @@
       </form>
     </div>
   </div>
-</section> <!-- closes section that is in header.jsp -->
+</section>
 
 <%@ include file="../partials/footer.jsp" %>

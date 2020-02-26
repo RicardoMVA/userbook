@@ -6,10 +6,6 @@ i {
   margin-right: 3px;
 }
 
-#top {
-  min-height: 400px;
-}
-
 .navbar {
   box-shadow: 0px 1px 2px #414141;
 }
@@ -31,8 +27,11 @@ a.nav-link {
   margin: 0 7px;
 }
 
-.padding-navbars {
-  padding-top: 56px;
+.padding-navbar-top {
+  padding-top: 56px; 
+}
+
+.padding-navbar-bottom {
   padding-bottom: 40px;
 }
 

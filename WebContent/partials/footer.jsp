@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<div class="padding-navbar-bottom"></div>
+
 <nav class="navbar navbar-light bg-light navbar-bottom justify-content-center">
   <ul class="navbar-nav">
     <li class="nav-item active">

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="partials/header.jsp" %>
 
+<section>
   <section class="jumbotron text-center">
     <div class="container">
       <h1>Userbook</h1>
@@ -48,6 +49,6 @@
       </div>
     </div>
   </div>
-</section> <!-- closes section that is in header.jsp -->
+</section>
 
 <%@ include file="partials/footer.jsp" %>
