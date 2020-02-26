@@ -100,6 +100,12 @@ public class UserServlet extends HttpServlet {
 		try {
 			long id = Long.parseLong(request.getParameter("id"));
 			User existingUser = userDao.getUser(id);
+			
+			String passwordConfirm = request.getParameter("passwordConfirm");
+
+			if (existingUser.getPassword().equals(passwordConfirm) != true) {
+				throw new ServletException("Passwords do not match");
+			}
 
 			existingUser.setName(request.getParameter("name"));
 			existingUser.setEmail(request.getParameter("email"));

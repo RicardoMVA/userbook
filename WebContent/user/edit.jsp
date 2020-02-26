@@ -5,40 +5,73 @@
 <section>
   <div class="container my-5">
 
-    <form action="/users/edit" id="putForm">
-      <h2>
-        Edit User
-      </h2>
+    <div class="row">
+      <form class="form" action="/users/edit" id="putForm">
 
-      <label for="name">User Name:</label>
-      <input class="form-control" type="text" name="name" size="80" value="<c:out value='${user.name}' />"/>
+        <div class="col-md-12">
+          <h2>Edit User</h2>
+        </div>
 
-      <br>
+        <div class="col-md-6">
+          <label for="name">User Name:</label>
+          <input class="form-control" type="text" name="name"value="<c:out value='${user.name}' />"/>
+        </div>
 
-      <label for="email">Email:</label>
-      <input class="form-control" type="text" name="email" size="80" value="<c:out value='${user.email}' />"/>
+        <div class="col-md-6">
+          <label for="email">Email:</label>
+          <input class="form-control" type="text" name="email" value="<c:out value='${user.email}' />"/>
+        </div>
 
-      <br>
+        <div class="col-md-6">
+          <label for="password">Password:</label>
+          <input class="form-control" type="password" name="password"/>
+        </div>
 
-      <label for="password">Password:</label>
-      <input class="form-control" type="text" name="password" size="80" value="<c:out value='${user.password}' />"/>
+        <div class="col-md-6">
+          <label for="password">Confirm Password:</label>
+          <input class="form-control" type="password" name="passwordConfirm"/>
+        </div>
 
-      <h4 class="mt-4">Phone(s):</h4>
+        <div class="col-md-12">
+          <h4 class="mt-4">Phone(s):</h4>
+        </div>
+        
+        <div id="phonesList" class="col-12 col-sm-10 col-md-6">
+          <c:forEach var="phone" items="${user.phones}">
+            <div id="phoneForm" class="row mt-2">
+              <div class="col-2 col-sm-2 col-md-2 ddd-col">
+                <label for="ddd">DDD:</label>
+                <input class="form-control ddd" type="text" name="ddd" value="<c:out value='${phone.ddd}' />"/>
+              </div>
 
-      <c:forEach var="phone" items="${user.phones}">
-        <label for="phone">DDD:</label>
-        <input class="form-control" type="text" name="ddd" size="3" value="<c:out value='${phone.ddd}' />"/>
-        <label for="phone">Phone:</label>
-        <input class="form-control" type="text" name="phone" size="15" value="<c:out value='${phone.number}' />"/>
-        <label for="phone">Type:</label>
-        <input class="form-control" type="text" name="type" size="30" value="<c:out value='${phone.type}' />"/>
+              <div class="col-4 col-sm-3 col-md-4 phone-col">
+                <label for="phone">Phone:</label>
+                <input class="form-control phone" type="text" name="phone" value="<c:out value='${phone.number}' />"/>
+              </div>
 
-        <br>
-      </c:forEach>
+              <div class="col-4 col-sm-4 col-md-6">
+                <label for="type">Type:</label>
+                <select class="form-control type" name="type" required>
+                  <option value="<c:out value='${phone.type}' />" disabled selected><c:out value='${phone.type}' /></option>
+                  <option>Residential</option>
+                  <option>Cellphone</option>
+                  <option>Professional</option>
+                </select>
+              </div>
+            </div>
+          </c:forEach>
+        </div>
 
-      <input type="submit" value="Save" id="putFormBtn"/>
+        <div class="col-md-12 mt-3">
+          <p id="addPhone">Add more phones</p>
+        </div>
 
-    </form>
+        <div class="col-md-12 mt-3">
+          <input type="submit" value="Save" id="putFormBtn"/>
+        </div>
+
+      </form>
+    </div>
   </div>
 </section>
 
