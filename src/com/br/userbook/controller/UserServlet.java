@@ -1,6 +1,7 @@
 package com.br.userbook.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,7 +104,7 @@ public class UserServlet extends HttpServlet {
 		try {
 			long id = Long.parseLong(request.getParameter("id"));
 			User existingUser = userDao.getUser(id);
-			
+
 			String password = request.getParameter("password");
 			String passwordConfirm = request.getParameter("passwordConfirm");
 
@@ -144,9 +145,9 @@ public class UserServlet extends HttpServlet {
 			response.setStatus(200);
 
 		} catch (EJBException ex) {
-			showException(request, response, ex);
+			sendExceptionString(request, response, ex);
 		} catch (Exception ex) {
-			showException(request, response, ex);
+			sendExceptionString(request, response, ex);
 		}
 	}
 
@@ -197,5 +198,14 @@ public class UserServlet extends HttpServlet {
 		RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
 		response.setStatus(400);
 		reqDis.forward(request, response);
+	}
+
+	protected void sendExceptionString(HttpServletRequest request, HttpServletResponse response, Exception ex)
+			throws ServletException, IOException {
+		response.setStatus(400);
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.print(ex.getMessage());
+		out.close();
 	}
 }

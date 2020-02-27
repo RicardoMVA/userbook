@@ -1,13 +1,18 @@
 package com.br.userbook.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import com.br.userbook.exception.CustomConstraintException;
 import com.br.userbook.model.Phone;
@@ -91,7 +96,18 @@ public class EJBUserDao implements UserDao {
 	@Override
 	public void updateUser(User user) throws EJBException {
 		try {
-			entityManager.merge(user);
+//			'merge' doesn't run validations the same way as 'persist' does, so 
+//			we instead validate data before calling 'merge', to ensure it doesn't write
+//			invalid data in one of the tables
+			ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+			Validator validator = factory.getValidator();
+			Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
+			
+			if (constraintViolations.size() > 0) {
+				throw new CustomConstraintException("edit", constraintViolations);
+			} else {
+				entityManager.merge(user);
+			}
 		} catch (ConstraintViolationException ex) {
 			CustomConstraintException constEx = new CustomConstraintException(ex.getConstraintViolations());
 			throw new EJBException(constEx.getMessage(), constEx);

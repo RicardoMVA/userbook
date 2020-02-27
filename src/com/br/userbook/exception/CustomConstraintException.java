@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
+import com.br.userbook.model.User;
+
 public class CustomConstraintException extends ConstraintViolationException {
 
 	/**
@@ -15,6 +17,10 @@ public class CustomConstraintException extends ConstraintViolationException {
 	private static final long serialVersionUID = 1L;
 
 	public CustomConstraintException(Set<ConstraintViolation<?>> constraintViolations) {
+		super(constraintViolations);
+	}
+	
+	public CustomConstraintException(String location, Set<ConstraintViolation<User>> constraintViolations) {
 		super(constraintViolations);
 	}
 
