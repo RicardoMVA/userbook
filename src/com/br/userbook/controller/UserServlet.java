@@ -104,9 +104,10 @@ public class UserServlet extends HttpServlet {
 			long id = Long.parseLong(request.getParameter("id"));
 			User existingUser = userDao.getUser(id);
 			
+			String password = request.getParameter("password");
 			String passwordConfirm = request.getParameter("passwordConfirm");
 
-			if (existingUser.getPassword().equals(passwordConfirm) != true) {
+			if (password.equals(passwordConfirm) != true) {
 				throw new ServletException("Passwords do not match");
 			}
 
@@ -194,6 +195,7 @@ public class UserServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setAttribute("error", ex.getMessage());
 		RequestDispatcher reqDis = request.getRequestDispatcher("/error.jsp");
+		response.setStatus(400);
 		reqDis.forward(request, response);
 	}
 }
