@@ -52,10 +52,10 @@
               <div class="col-4 col-sm-4 col-md-6">
                 <label for="type">Type:</label>
                 <select class="form-control type" name="type" required>
-                  <option value="<c:out value='${phone.type}' />" disabled selected><c:out value='${phone.type}' /></option>
-                  <option>Residential</option>
-                  <option>Cellphone</option>
-                  <option>Professional</option>
+                  <option value="<c:out value='${phone.type}' />" selected><c:out value='${phone.type}' /></option>
+                  <option value="Residential">Residential</option>
+                  <option value="Cellphone">Cellphone</option>
+                  <option value="Professional">Professional</option>
                 </select>
               </div>
             </div>
