@@ -1,2 +1,2 @@
 INSERT INTO users(`name`, `email`, `password`)VALUES("Ricardo de Melo","ricardo@email.com","123"),("Karina Ferreira","karina@email.com","321"),("Ivan Filho","ivan@email.com","456");
-INSERT INTO phones(`ddd`, `number`, `type`, `user_id`)VALUES(81,"34633582","residential", 1),(81,"96069809","celular", 1), (81,"31231234","residential", 2), (81,"912341234","celular", 3);
+INSERT INTO phones(`ddd`, `number`, `type`, `user_id`)VALUES(81,"34633582","Residential", 1),(81,"96069809","Cellphone", 1), (81,"31231234","Residential", 2), (81,"912341234","Cellphone", 3);
