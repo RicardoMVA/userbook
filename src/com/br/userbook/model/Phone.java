@@ -31,9 +31,6 @@ public class Phone {
 	private User user;
 	
 	@NotNull(message = "DDD cannot be null")
-	@NotEmpty(message = "DDD cannot be empty")
-	@Pattern(regexp = "[0-9]*", message = "DDD has invalid characters")
-	@Size(min = 2, max = 2, message = "DDD must have only 2 numbers")
 	@Column(nullable = false, length = 2)
 	private int ddd;
 	
