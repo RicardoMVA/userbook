@@ -14,6 +14,9 @@ if (putForm != null) {
       data: $(putForm).serialize(),
       success: function(result) {
         window.location = '/';
+      },
+      error: function(result) {
+        console.log(result.responseText);
       }
     })
   })
@@ -32,6 +35,9 @@ if (deleteBtns != null) {
         url: '/users/delete?id=' + userId,
         success: function(result) {
           window.location = '/';
+        },
+        error: function(result) {
+          console.log(result.responseText);
         }
       })
     })
