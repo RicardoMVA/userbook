@@ -18,9 +18,9 @@ public interface UserDao {
 
 	void createUser(User user);
 
-	void createPhone(Phone phones);
-
 	void updateUser(User user);
 
 	void deleteUser(long id);
+
+	void validateUserAndPhone(User user);
 }

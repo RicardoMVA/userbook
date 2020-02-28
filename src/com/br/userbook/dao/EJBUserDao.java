@@ -105,33 +105,8 @@ public class EJBUserDao implements UserDao {
 	@Override
 	public void createUser(User user) throws EJBException {
 		try {
-			User checkIfEmailExists = getUserByEmail(user.getEmail());
-
-			if (checkIfEmailExists != null) {
-				throw new EJBException("This email is already in use.");
-			} else {
-				entityManager.persist(user);
-			}
-
-		} catch (ConstraintViolationException ex) {
-			CustomConstraintException constEx = new CustomConstraintException(ex.getConstraintViolations());
-			throw new EJBException(constEx.getMessage(), constEx);
-		} catch (Exception ex) {
-			throw new EJBException(ex.getMessage(), ex);
-		}
-	}
-
-	@Override
-	public void createPhone(Phone phone) throws EJBException {
-		try {
-			Phone checkIfPhoneExists = getPhoneByNumber(phone.getNumber());
-
-			if (checkIfPhoneExists != null) {
-				throw new EJBException("The phone(s) must be unique.");
-			} else {
-				entityManager.persist(phone);
-			}
-
+			validateUserAndPhone(user);
+			entityManager.persist(user);
 		} catch (ConstraintViolationException ex) {
 			CustomConstraintException constEx = new CustomConstraintException(ex.getConstraintViolations());
 			throw new EJBException(constEx.getMessage(), constEx);
@@ -143,32 +118,8 @@ public class EJBUserDao implements UserDao {
 	@Override
 	public void updateUser(User user) throws EJBException {
 		try {
-//			'merge' doesn't run validations the same way as 'persist' does, so 
-//			we instead validate data before calling 'merge', to ensure it doesn't write
-//			invalid data in one of the tables
-			ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-			Validator validator = factory.getValidator();
-			Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
-
-			User checkIfEmailExists = getUserByEmail(user.getEmail());
-			Phone checkIfPhoneExists = null;
-
-			for (int i = 0; i < user.getPhones().size(); i++) {
-				checkIfPhoneExists = getPhoneByNumber(user.getPhones().get(i).getNumber());
-				if (checkIfPhoneExists != null) {
-					break;
-				}
-			}
-
-			if (constraintViolations.size() > 0) {
-				throw new CustomConstraintException("edit", constraintViolations);
-			} else if (checkIfEmailExists != null) {
-				throw new EJBException("This email is already in use.");
-			} else if (checkIfPhoneExists != null) {
-				throw new EJBException("The phone(s) must be unique.");
-			} else {
-				entityManager.merge(user);
-			}
+			validateUserAndPhone(user);
+			entityManager.merge(user);
 		} catch (ConstraintViolationException ex) {
 			CustomConstraintException constEx = new CustomConstraintException(ex.getConstraintViolations());
 			throw new EJBException(constEx.getMessage(), constEx);
@@ -184,6 +135,33 @@ public class EJBUserDao implements UserDao {
 			entityManager.remove(existingUser);
 		} catch (Exception ex) {
 			throw new EJBException(ex.getMessage(), ex);
+		}
+	}
+
+	@Override
+	public void validateUserAndPhone(User user) throws EJBException {
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
+
+		User checkIfEmailExists = getUserByEmail(user.getEmail());
+		Phone checkIfPhoneExists = null;
+
+		for (int i = 0; i < user.getPhones().size(); i++) {
+			checkIfPhoneExists = getPhoneByNumber(user.getPhones().get(i).getNumber());
+			if (checkIfPhoneExists != null) {
+				break;
+			}
+		}
+
+		if (constraintViolations.size() > 0) {
+			throw new CustomConstraintException("edit", constraintViolations);
+		} else if (checkIfEmailExists != null) {
+			throw new EJBException("This email is already in use.");
+		} else if (checkIfPhoneExists != null) {
+			throw new EJBException("The phone(s) must be unique.");
+		} else {
+			return;
 		}
 	}
 }
