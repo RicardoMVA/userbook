@@ -56,6 +56,8 @@ public class UserServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		User createdUser = null;
+
 		try {
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
@@ -70,6 +72,14 @@ public class UserServlet extends HttpServlet {
 
 			userDao.createUser(newUser);
 
+			createdUser = userDao.getUserByEmail(email);
+		} catch (EJBException ex) {
+			showException(request, response, ex);
+		} catch (Exception ex) {
+			showException(request, response, ex);
+		}
+
+		try {
 			String[] ddds = request.getParameterValues("ddd");
 			String[] phones = request.getParameterValues("phone");
 			String[] types = request.getParameterValues("type");
@@ -86,13 +96,16 @@ public class UserServlet extends HttpServlet {
 				String phone = phones[i];
 				String type = types[i];
 
-				Phone newPhone = new Phone(newUser, ddd, phone, type);
+				Phone newPhone = new Phone(createdUser, ddd, phone, type);
 				userDao.createPhone(newPhone);
 			}
 
 			response.sendRedirect("/");
 
 		} catch (EJBException ex) {
+//			createPhone method runs after creating a user, so if a phone returns a problem, we need to erase the
+//			user that was just created
+			userDao.deleteUser(createdUser.getId());
 			showException(request, response, ex);
 		} catch (Exception ex) {
 			showException(request, response, ex);
