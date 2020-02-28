@@ -1,17 +1,20 @@
+const alertContainer = document.getElementById("alert-container");
+const closeBox = document.querySelector(".close-box");
+
+closeBox.addEventListener("click", (e) => {
+  alertContainer.classList.remove('floating-alert-display');
+  alertContainer.classList.add('floating-alert-hide'); 
+});
+
 const renderAlertBox = (text, alertType) => {
-  const floatingAlert = document.querySelector(".floating-alert");
-  floatingAlert.style.display = "block";
+  alertContainer.classList.remove('floating-alert-hide');
+  alertContainer.classList.add('floating-alert-display');
 
   const alertBox = document.getElementById("alert-box");
   alertBox.classList.add(alertType);
 
   const alertText = document.getElementById("alert-text");
   alertText.innerHTML = text;
-
-  const closeBox = document.querySelector(".close-box");
-  closeBox.addEventListener("click", (e) => {
-    floatingAlert.style.display = "none";
-  });
 
   document.getElementById("top").scrollIntoView();
 }
@@ -31,7 +34,7 @@ if (putForm != null) {
       url: '/users/edit?id=' + userId,
       data: $(putForm).serialize(),
       success: function(result) {
-        window.location = '/';
+        window.location = '/users/edit/ok';
       },
       error: function(result) {
         renderAlertBox(result.responseText, "alert-danger");

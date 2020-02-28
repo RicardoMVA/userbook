@@ -35,8 +35,12 @@ a.nav-link {
   padding-bottom: 40px;
 }
 
-.floating-alert {
-  display: none;
+.floating-alert-hide {
+  display: none;  
+}
+
+.floating-alert-display {
+  display: block;
   top: 60px;
 }
 
