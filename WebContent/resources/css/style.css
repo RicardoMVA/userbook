@@ -35,6 +35,11 @@ a.nav-link {
   padding-bottom: 40px;
 }
 
+.floating-alert {
+  display: none;
+  top: 60px;
+}
+
 .form {
   width: 100%;
   display: contents;

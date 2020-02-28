@@ -52,4 +52,12 @@
 </nav>
 
 <div id="top" class="padding-navbar-top"></div>
-  
+
+<div class="container fixed-top floating-alert">
+  <div id="alert-box" class="alert alert-dismissible show" role="alert">
+    <span id="alert-text"></span>
+    <button type="button" class="close close-box" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>  
+</div>

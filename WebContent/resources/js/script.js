@@ -1,3 +1,21 @@
+const renderAlertBox = (text, alertType) => {
+  const floatingAlert = document.querySelector(".floating-alert");
+  floatingAlert.style.display = "block";
+
+  const alertBox = document.getElementById("alert-box");
+  alertBox.classList.add(alertType);
+
+  const alertText = document.getElementById("alert-text");
+  alertText.innerHTML = text;
+
+  const closeBox = document.querySelector(".close-box");
+  closeBox.addEventListener("click", (e) => {
+    floatingAlert.style.display = "none";
+  });
+
+  document.getElementById("top").scrollIntoView();
+}
+
 const putForm = document.getElementById("putForm");
 
 if (putForm != null) {
@@ -16,7 +34,7 @@ if (putForm != null) {
         window.location = '/';
       },
       error: function(result) {
-        console.log(result.responseText);
+        renderAlertBox(result.responseText, "alert-danger");
       }
     })
   })
@@ -37,7 +55,7 @@ if (deleteBtns != null) {
           window.location = '/';
         },
         error: function(result) {
-          console.log(result.responseText);
+          renderAlertBox(result.responseText, "alert-danger");
         }
       })
     })
