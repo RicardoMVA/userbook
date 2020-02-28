@@ -9,7 +9,11 @@ public interface UserDao {
 	List<User> getUsers();
 
 	User getUser(long id);
-	
+
+	User getUserByEmail(String email);
+
+	Phone getPhoneByNumber(String number);
+
 	User authUser(String email, String password);
 
 	void createUser(User user);
