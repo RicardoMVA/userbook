@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
+import com.br.userbook.model.Phone;
 import com.br.userbook.model.User;
 
 public class CustomConstraintException extends ConstraintViolationException {
@@ -19,17 +20,20 @@ public class CustomConstraintException extends ConstraintViolationException {
 	public CustomConstraintException(Set<ConstraintViolation<?>> constraintViolations) {
 		super(constraintViolations);
 	}
-	
-	public CustomConstraintException(String location, Set<ConstraintViolation<User>> constraintViolations) {
+
+	public CustomConstraintException(String string, Set<ConstraintViolation<User>> constraintViolations) {
+		super(constraintViolations);
+	}
+
+	public CustomConstraintException(Set<ConstraintViolation<Phone>> constraintViolations, String string) {
 		super(constraintViolations);
 	}
 
 	@Override
 	public String getMessage() {
-		String errors = super.getConstraintViolations().stream()
-				.map(cv -> cv == null ? "null" : cv.getMessage())
+		String errors = super.getConstraintViolations().stream().map(cv -> cv == null ? "null" : cv.getMessage())
 				.collect(Collectors.joining(", "));
-		
+
 		return errors;
 	}
 

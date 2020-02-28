@@ -1,5 +1,6 @@
 package com.br.userbook.dao;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -142,20 +143,24 @@ public class EJBUserDao implements UserDao {
 	public void validateUserAndPhone(User user) throws EJBException {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
-		Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
+		Set<ConstraintViolation<User>> userConstraintViolations = validator.validate(user);
+		Set<ConstraintViolation<Phone>> phoneConstraintViolations = new HashSet<>();
 
 		User checkIfEmailExists = getUserByEmail(user.getEmail());
 		Phone checkIfPhoneExists = null;
 
 		for (int i = 0; i < user.getPhones().size(); i++) {
+			phoneConstraintViolations.addAll(validator.validate(user.getPhones().get(i)));
 			checkIfPhoneExists = getPhoneByNumber(user.getPhones().get(i).getNumber());
 			if (checkIfPhoneExists != null) {
 				break;
 			}
 		}
 
-		if (constraintViolations.size() > 0) {
-			throw new CustomConstraintException("edit", constraintViolations);
+		if (userConstraintViolations.size() > 0) {
+			throw new CustomConstraintException("hi", userConstraintViolations);
+		} else if (phoneConstraintViolations.size() > 0) {
+			throw new CustomConstraintException(phoneConstraintViolations, "hi");
 		} else if (checkIfEmailExists != null) {
 			throw new EJBException("This email is already in use.");
 		} else if (checkIfPhoneExists != null) {
