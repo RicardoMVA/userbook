@@ -100,9 +100,9 @@ public class UserServlet extends HttpServlet {
 
 			response.setStatus(200);
 		} catch (EJBException ex) {
-			showException(request, response, ex);
+			sendExceptionString(request, response, ex);
 		} catch (Exception ex) {
-			showException(request, response, ex);
+			sendExceptionString(request, response, ex);
 		}
 	}
 
