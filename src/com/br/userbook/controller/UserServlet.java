@@ -57,40 +57,9 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			String name = request.getParameter("name");
-			String email = request.getParameter("email");
-			String password = request.getParameter("password");
-			String passwordConfirm = request.getParameter("passwordConfirm");
+			User newUser = new User();
 
-			if (password.equals(passwordConfirm) != true) {
-				throw new ServletException("Passwords do not match");
-			}
-
-			User newUser = new User(name, email, password);
-
-			String[] ddds = request.getParameterValues("ddd");
-			String[] phones = request.getParameterValues("phone");
-			String[] types = request.getParameterValues("type");
-
-			List<Phone> updatedPhones = new ArrayList<>();
-
-			for (int i = 0; i < phones.length; i++) {
-				int ddd = 0;
-
-				try {
-					ddd = Integer.parseInt(ddds[i]);
-				} catch (NumberFormatException e) {
-					throw new ServletException("Invalid DDD number.");
-				}
-
-				String phone = phones[i];
-				String type = types[i];
-
-				Phone newPhone = new Phone(newUser, ddd, phone, type);
-				updatedPhones.add(newPhone);
-			}
-
-			newUser.setPhones(updatedPhones);
+			manipulateUser(request, newUser);
 
 			userDao.createUser(newUser);
 
@@ -109,40 +78,7 @@ public class UserServlet extends HttpServlet {
 			long id = Long.parseLong(request.getParameter("id"));
 			User existingUser = userDao.getUser(id);
 
-			String password = request.getParameter("password");
-			String passwordConfirm = request.getParameter("passwordConfirm");
-
-			if (password.equals(passwordConfirm) != true) {
-				throw new ServletException("Passwords do not match");
-			}
-
-			existingUser.setName(request.getParameter("name"));
-			existingUser.setEmail(request.getParameter("email"));
-			existingUser.setPassword(request.getParameter("password"));
-
-			String[] ddds = request.getParameterValues("ddd");
-			String[] phones = request.getParameterValues("phone");
-			String[] types = request.getParameterValues("type");
-
-			List<Phone> updatedPhones = new ArrayList<>();
-
-			for (int i = 0; i < phones.length; i++) {
-				int ddd = 0;
-
-				try {
-					ddd = Integer.parseInt(ddds[i]);
-				} catch (NumberFormatException e) {
-					throw new ServletException("Invalid DDD number.");
-				}
-
-				String phone = phones[i];
-				String type = types[i];
-
-				Phone newPhone = new Phone(existingUser, ddd, phone, type);
-				updatedPhones.add(newPhone);
-			}
-
-			existingUser.setPhones(updatedPhones);
+			manipulateUser(request, existingUser);
 
 			userDao.updateUser(existingUser);
 
@@ -194,6 +130,45 @@ public class UserServlet extends HttpServlet {
 		RequestDispatcher reqDis = request.getRequestDispatcher("/user/edit.jsp");
 		request.setAttribute("user", existingUser);
 		reqDis.forward(request, response);
+	}
+	
+	private User manipulateUser(HttpServletRequest request, User user) throws Exception {
+		String password = request.getParameter("password");
+		String passwordConfirm = request.getParameter("passwordConfirm");
+
+		if (password.equals(passwordConfirm) != true) {
+			throw new Exception("Passwords do not match");
+		}
+
+		user.setName(request.getParameter("name"));
+		user.setEmail(request.getParameter("email"));
+		user.setPassword(request.getParameter("password"));
+
+		String[] ddds = request.getParameterValues("ddd");
+		String[] phones = request.getParameterValues("phone");
+		String[] types = request.getParameterValues("type");
+
+		List<Phone> updatedPhones = new ArrayList<>();
+
+		for (int i = 0; i < phones.length; i++) {
+			int ddd = 0;
+
+			try {
+				ddd = Integer.parseInt(ddds[i]);
+			} catch (NumberFormatException e) {
+				throw new Exception("Invalid DDD number.");
+			}
+
+			String phone = phones[i];
+			String type = types[i];
+
+			Phone newPhone = new Phone(user, ddd, phone, type);
+			updatedPhones.add(newPhone);
+		}
+
+		user.setPhones(updatedPhones);
+		
+		return user;
 	}
 
 	protected void showException(HttpServletRequest request, HttpServletResponse response, Exception ex)
