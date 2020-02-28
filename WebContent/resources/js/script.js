@@ -55,7 +55,7 @@ if (deleteBtns != null) {
         type: 'DELETE',
         url: '/users/delete?id=' + userId,
         success: function(result) {
-          window.location = '/';
+          window.location = '/users/delete/ok';
         },
         error: function(result) {
           renderAlertBox(result.responseText, "alert-danger");
