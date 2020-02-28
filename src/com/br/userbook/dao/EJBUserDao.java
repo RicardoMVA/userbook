@@ -50,13 +50,13 @@ public class EJBUserDao implements UserDao {
 		try {
 			List<User> existingUser = entityManager.createQuery("SELECT c FROM User c WHERE c.email = :email")
 					.setParameter("email", email).getResultList();
-			
+
 			if (existingUser.size() > 0) {
 				return existingUser.get(0);
 			} else {
 				return null;
 			}
-			
+
 		} catch (Exception ex) {
 			throw new EJBException(ex.getMessage(), ex);
 		}
@@ -68,7 +68,7 @@ public class EJBUserDao implements UserDao {
 		try {
 			List<Phone> existingPhone = entityManager.createQuery("SELECT c FROM Phone c WHERE c.number = :number")
 					.setParameter("number", number).getResultList();
-			
+
 			if (existingPhone.size() > 0) {
 				return existingPhone.get(0);
 			} else {
@@ -86,13 +86,13 @@ public class EJBUserDao implements UserDao {
 		try {
 			List<User> existingUser = entityManager.createQuery("SELECT c FROM User c WHERE c.email = :email")
 					.setParameter("email", email).getResultList();
-			
+
 			if (existingUser.size() > 0) {
 				if (existingUser.get(0).getPassword().equals(password)) {
 					return existingUser.get(0);
 				} else {
 					return null;
-				}			
+				}
 			} else {
 				return null;
 			}
@@ -152,14 +152,14 @@ public class EJBUserDao implements UserDao {
 
 			User checkIfEmailExists = getUserByEmail(user.getEmail());
 			Phone checkIfPhoneExists = null;
-			
+
 			for (int i = 0; i < user.getPhones().size(); i++) {
 				checkIfPhoneExists = getPhoneByNumber(user.getPhones().get(i).getNumber());
 				if (checkIfPhoneExists != null) {
 					break;
 				}
 			}
-			
+
 			if (constraintViolations.size() > 0) {
 				throw new CustomConstraintException("edit", constraintViolations);
 			} else if (checkIfEmailExists != null) {
