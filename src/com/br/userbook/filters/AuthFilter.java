@@ -34,7 +34,7 @@ public class AuthFilter implements Filter {
 		if (isLoggedIn && isLoginRequest) {
 //			the user is already logged in and he's trying to login again
 //			so this redirects to homepage
-			httpResponse.sendRedirect("/");
+			httpResponse.sendRedirect("/?msgType=alert-danger&msg=You're already logged in.&urlDest=/");
 
 		} else if (isLoggedIn || isLoginRequest || isRegisterRequest) {
 //			is either logged, or trying to login or register, so continues the filter chain
@@ -42,7 +42,7 @@ public class AuthFilter implements Filter {
 
 		} else {
 //			not logged in and not trying to login or register, so redirects to login page			
-			httpResponse.sendRedirect("/auth/login");
+			httpResponse.sendRedirect("/auth/login?msgType=alert-danger&msg=You must be logged in to access this page.&urlDest=/auth/login");
 		}
 	}
 
