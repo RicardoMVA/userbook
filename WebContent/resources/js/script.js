@@ -1,3 +1,4 @@
+// logic for rendering alert box
 const alertContainer = document.getElementById("alert-container");
 const closeBox = document.querySelector(".close-box");
 
@@ -18,11 +19,24 @@ const renderAlertBox = (text, alertType) => {
 
   document.getElementById("top").scrollIntoView();
 }
+// ==============================================
 
+// checks if any alert message is present in current window
+const urlParams = new URLSearchParams(window.location.search);
+const alertMsg = urlParams.get('msg');
+
+if (alertMsg != null) {
+  const alertMsgType = urlParams.get('msgType');
+  renderAlertBox(alertMsg, alertMsgType);
+  history.pushState({}, "index", "/");
+}
+
+// ==============================================
+
+// sends put request
 const putForm = document.getElementById("putForm");
 
 if (putForm != null) {
-  const urlParams = new URLSearchParams(window.location.search);
   const userId = urlParams.get('id');
   const putFormBtn = document.getElementById("putFormBtn");
 
@@ -34,7 +48,7 @@ if (putForm != null) {
       url: '/users/edit?id=' + userId,
       data: $(putForm).serialize(),
       success: function(result) {
-        window.location = '/users/edit/ok';
+        window.location = '/?msgType=alert-success&msg=User edited successfully!';
       },
       error: function(result) {
         renderAlertBox(result.responseText, "alert-danger");
@@ -42,7 +56,9 @@ if (putForm != null) {
     })
   })
 }
+// ==============================================
 
+// sends delete request
 const deleteBtns = document.querySelectorAll(".deleteBtn");
 
 if (deleteBtns != null) {
@@ -55,7 +71,7 @@ if (deleteBtns != null) {
         type: 'DELETE',
         url: '/users/delete?id=' + userId,
         success: function(result) {
-          window.location = '/users/delete/ok';
+          window.location = '/?msgType=alert-success&msg=User deleted successfully!';
         },
         error: function(result) {
           renderAlertBox(result.responseText, "alert-danger");
@@ -64,7 +80,9 @@ if (deleteBtns != null) {
     })
   })
 }
+// ==============================================
 
+// show multiple phone forms, used in 'create' and 'edit' pages
 const addPhone = document.getElementById("addPhone");
 
 if (addPhone != null) {
@@ -77,3 +95,4 @@ if (addPhone != null) {
     phonesList.appendChild(newPhone);
   });
 }
+// ==============================================

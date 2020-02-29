@@ -35,20 +35,11 @@ public class UserServlet extends HttpServlet {
 			case "/new":
 				showCreateUser(request, response);
 				break;
-			case "/new/ok":
-				successCreateUser(request, response);
-				break;
 			case "/view":
 				showOneUser(request, response);
 				break;
 			case "/edit":
 				showEditUser(request, response);
-				break;
-			case "/edit/ok":
-				successEditUser(request, response);
-				break;
-			case "/delete/ok":
-				successDeleteUser(request, response);
 				break;
 			default:
 				response.sendRedirect("/");
@@ -72,7 +63,7 @@ public class UserServlet extends HttpServlet {
 
 			userDao.createUser(newUser);
 
-			response.sendRedirect("/users/new/ok");
+			response.sendRedirect("/?msgType=alert-success&msg=User created successfully!");
 
 		} catch (EJBException ex) {
 			showException(request, response, ex);
@@ -138,27 +129,6 @@ public class UserServlet extends HttpServlet {
 
 		RequestDispatcher reqDis = request.getRequestDispatcher("/user/edit.jsp");
 		request.setAttribute("user", existingUser);
-		reqDis.forward(request, response);
-	}
-
-	private void successCreateUser(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
-		RequestDispatcher reqDis = request.getRequestDispatcher("/");
-		request.setAttribute("alert", "User created successfully!");
-		reqDis.forward(request, response);
-	}
-
-	private void successEditUser(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
-		RequestDispatcher reqDis = request.getRequestDispatcher("/");
-		request.setAttribute("alert", "User edited successfully!");
-		reqDis.forward(request, response);
-	}
-
-	private void successDeleteUser(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
-		RequestDispatcher reqDis = request.getRequestDispatcher("/");
-		request.setAttribute("alert", "User deleted successfully!");
 		reqDis.forward(request, response);
 	}
 
