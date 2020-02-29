@@ -27,8 +27,11 @@ const alertMsg = urlParams.get('msg');
 
 if (alertMsg != null) {
   const alertMsgType = urlParams.get('msgType');
+  const destination = urlParams.get('urlDest');
+
   renderAlertBox(alertMsg, alertMsgType);
-  history.pushState({}, "index", "/");
+
+  history.pushState({}, "index", destination);
 }
 
 // ==============================================
@@ -48,7 +51,7 @@ if (putForm != null) {
       url: '/users/edit?id=' + userId,
       data: $(putForm).serialize(),
       success: function(result) {
-        window.location = '/?msgType=alert-success&msg=User edited successfully!';
+        window.location = '/?msgType=alert-success&msg=User edited successfully!&urlDest=/';
       },
       error: function(result) {
         renderAlertBox(result.responseText, "alert-danger");
@@ -71,7 +74,7 @@ if (deleteBtns != null) {
         type: 'DELETE',
         url: '/users/delete?id=' + userId,
         success: function(result) {
-          window.location = '/?msgType=alert-success&msg=User deleted successfully!';
+          window.location = '/?msgType=alert-success&msg=User deleted successfully!&urlDest=/';
         },
         error: function(result) {
           renderAlertBox(result.responseText, "alert-danger");
