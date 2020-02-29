@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.br.userbook.model.Phone;
 import com.br.userbook.model.User;
@@ -95,7 +96,16 @@ public class UserServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			long id = Long.parseLong(request.getParameter("id"));
-
+			
+			User deletedUser = userDao.getUser(id);
+			
+			HttpSession session = request.getSession();
+			User loggedUser = (User) session.getAttribute("user");
+			
+			if (deletedUser.getId() == loggedUser.getId()) {
+				session.invalidate();
+			}
+			
 			userDao.deleteUser(id);
 
 			response.setStatus(200);
