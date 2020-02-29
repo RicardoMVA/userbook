@@ -31,7 +31,7 @@ if (alertMsg != null) {
 
   renderAlertBox(alertMsg, alertMsgType);
 
-  history.pushState({}, "index", destination);
+  history.replaceState({}, "", destination);
 }
 
 // ==============================================

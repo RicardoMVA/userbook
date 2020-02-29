@@ -63,8 +63,14 @@ public class UserServlet extends HttpServlet {
 			manipulateUser(request, newUser);
 
 			userDao.createUser(newUser);
+			
+			HttpSession session = request.getSession(false);
 
-			response.sendRedirect("/?msgType=alert-success&msg=User created successfully!");
+			if (session.getAttribute("user") != null) {
+				response.sendRedirect("/?msgType=alert-success&msg=User created successfully!");
+			} else {
+				response.sendRedirect("/auth/login?msgType=alert-success&msg=User created successfully!");
+			}
 
 		} catch (EJBException ex) {
 			showException(request, response, ex);
