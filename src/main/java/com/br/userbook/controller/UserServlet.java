@@ -67,9 +67,9 @@ public class UserServlet extends HttpServlet {
 			HttpSession session = request.getSession(false);
 
 			if (session.getAttribute("user") != null) {
-				response.sendRedirect("/?msgType=alert-success&msg=User created successfully!");
+				response.sendRedirect("/?msgType=alert-success&msg=User created successfully!&urlDest=/");
 			} else {
-				response.sendRedirect("/auth/login?msgType=alert-success&msg=User created successfully!");
+				response.sendRedirect("/auth/login?msgType=alert-success&msg=User created successfully!&urlDest=/auth/login");
 			}
 
 		} catch (EJBException ex) {
