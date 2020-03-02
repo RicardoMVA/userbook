@@ -20,7 +20,7 @@
         <c:forEach var="user" items="${listUser}">
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-              <img src="#">
+              <img class="user-img" src="<c:out value='${user.imageLocation}' />">
               <div class="card-body">
                 <p class="card-text"><c:out value="${user.name}" /></p>
                 <p class="card-text"><c:out value="${user.email}" /></p>

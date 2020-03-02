@@ -49,6 +49,9 @@ public class User {
 
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
 	private List<Phone> phones;
+	
+	@Column
+	private String imageLocation;
 
 	public User() {
 
@@ -98,5 +101,13 @@ public class User {
 
 	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
+	}
+	
+	public String getImageLocation() {
+		return imageLocation;
+	}
+
+	public void setImageLocation(String imageLocation) {
+		this.imageLocation = imageLocation;
 	}
 }
