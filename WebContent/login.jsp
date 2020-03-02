@@ -3,9 +3,9 @@
 <%@ include file="partials/header.jsp" %>
 
 <section>  
-  <div class="container text-center py-5">
+  <div class="container text-center py-3">
     <form class="form-signin" action="/auth/login" method="POST">
-      <img class="mb-4" src="#" alt="" width="72" height="72">
+      <img class="logo-img mb-4" src="/resources/images/userbook.jpg" alt="notebook and pen">
 
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
