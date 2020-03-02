@@ -33,6 +33,11 @@
         </div>
 
         <div class="col-md-12">
+          <label for="userImage">User Image (URL):</label>
+          <input class="form-control" type="text" name="userImage"/>
+        </div>
+
+        <div class="col-md-12">
           <h4 class="mt-4">Phone(s):</h4>
         </div>
         
