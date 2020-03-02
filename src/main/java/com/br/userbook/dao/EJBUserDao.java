@@ -145,7 +145,7 @@ public class EJBUserDao implements UserDao {
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<User>> userConstraintViolations = validator.validate(user);
 		Set<ConstraintViolation<Phone>> phoneConstraintViolations = new HashSet<>();
-		
+
 		User existingUser = getUserByEmail(user.getEmail());
 		if (existingUser != null) {
 			if (existingUser.getId() != user.getId()) {
@@ -155,12 +155,12 @@ public class EJBUserDao implements UserDao {
 
 		for (int i = 0; i < user.getPhones().size(); i++) {
 			phoneConstraintViolations.addAll(validator.validate(user.getPhones().get(i)));
-			
+
 			Phone existingPhone = getPhoneByNumber(user.getPhones().get(i).getNumber());
 			if (existingPhone != null) {
 				if (existingPhone.getUser().getId() != user.getId()) {
 					throw new EJBException("The phone(s) must be unique.");
-				}				
+				}
 			}
 		}
 

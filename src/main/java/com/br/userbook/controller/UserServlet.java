@@ -63,7 +63,7 @@ public class UserServlet extends HttpServlet {
 			manipulateUser(request, newUser);
 
 			userDao.createUser(newUser);
-			
+
 			HttpSession session = request.getSession(false);
 
 			if (session.getAttribute("user") != null) {
@@ -102,16 +102,16 @@ public class UserServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			long id = Long.parseLong(request.getParameter("id"));
-			
+
 			User deletedUser = userDao.getUser(id);
-			
+
 			HttpSession session = request.getSession();
 			User loggedUser = (User) session.getAttribute("user");
-			
+
 			if (deletedUser.getId() == loggedUser.getId()) {
 				session.invalidate();
 			}
-			
+
 			userDao.deleteUser(id);
 
 			response.setStatus(200);
@@ -166,7 +166,7 @@ public class UserServlet extends HttpServlet {
 
 		List<Phone> updatedPhones = new ArrayList<>();
 		List<Phone> oldPhones = user.getPhones();
-		
+
 		for (int i = 0; i < numbers.length; i++) {
 			int ddd = 0;
 
@@ -178,15 +178,17 @@ public class UserServlet extends HttpServlet {
 
 			String number = numbers[i];
 			String type = types[i];
-			
+
 //			this will run when a user has no phones (typically in creation)
 			if (oldPhones == null) {
 				Phone newPhone = new Phone(user, ddd, number, type);
 				updatedPhones.add(newPhone);
-				
+
 			} else {
 //				this will run when a user is being updated
-				Phone numberIsSame = oldPhones.stream().filter(oldPhone -> number.equals(oldPhone.getNumber())).findFirst().orElse(null);
+				Phone numberIsSame = oldPhones.stream().filter(oldPhone -> number.equals(oldPhone.getNumber()))
+						.findFirst().orElse(null);
+				
 				if (numberIsSame != null) {
 					updatedPhones.add(numberIsSame);
 				} else {

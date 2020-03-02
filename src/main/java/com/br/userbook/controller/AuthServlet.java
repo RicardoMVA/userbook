@@ -61,7 +61,8 @@ public class AuthServlet extends HttpServlet {
 
 				response.sendRedirect("/");
 			} else {
-				response.sendRedirect("/auth/login?msgType=alert-danger&msg=User doesn't exist or password is incorrect.&urlDest=/auth/login");
+				response.sendRedirect(
+						"/auth/login?msgType=alert-danger&msg=User doesn't exist or password is incorrect.&urlDest=/auth/login");
 			}
 		} catch (EJBException ex) {
 			showException(request, response, ex);
