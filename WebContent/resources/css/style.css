@@ -96,4 +96,5 @@ a.nav-link {
 .user-img {
   height: 35vh;
   object-fit: cover;
+  border-radius: 0.25em 0.25em 0 0;
 }

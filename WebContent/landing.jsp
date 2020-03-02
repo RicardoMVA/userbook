@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="partials/header.jsp" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <section>
   <section class="jumbotron text-center">
@@ -22,16 +23,16 @@
             <div class="card mb-4 shadow-sm">
               <img class="user-img" src="<c:out value='${user.imageLocation}' />">
               <div class="card-body">
-                <p class="card-text"><c:out value="${user.name}" /></p>
-                <p class="card-text"><c:out value="${user.email}" /></p>
-                <p class="card-text"><c:out value="${user.password}" /></p>
-                <c:forEach var="phone" items="${user.phones}">
-                  <p class="card-text">
-                    (<c:out value="${phone.ddd}" />)
-                    <c:out value="${phone.number}" />
-                    <c:out value="${phone.type}" />
-                  </p>
-                </c:forEach>
+                <p class="card-text"><strong><c:out value="${user.name}" /></strong></p>
+                <p class="card-text"><c:out value="${user.email}" /></p>    
+                <p class="card-text">
+                  (<c:out value="${user.phones[0].ddd}" />)
+                  <c:out value="${user.phones[0].number}" />
+                  <c:out value="${user.phones[0].type}" />
+                  <c:if test="${fn:length(user.phones) > 1}">
+                    <small class="text-muted ml-2">more...</small>
+                  </c:if>
+                </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <a type="button" class="btn btn-sm btn-outline-secondary" href="/users/view?id=<c:out value='${user.id}' />">View</a>
