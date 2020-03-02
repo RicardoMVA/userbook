@@ -161,12 +161,13 @@ public class UserServlet extends HttpServlet {
 		user.setPassword(request.getParameter("password"));
 
 		String[] ddds = request.getParameterValues("ddd");
-		String[] phones = request.getParameterValues("phone");
+		String[] numbers = request.getParameterValues("number");
 		String[] types = request.getParameterValues("type");
 
 		List<Phone> updatedPhones = new ArrayList<>();
-
-		for (int i = 0; i < phones.length; i++) {
+		List<Phone> oldPhones = user.getPhones();
+		
+		for (int i = 0; i < numbers.length; i++) {
 			int ddd = 0;
 
 			try {
@@ -175,11 +176,24 @@ public class UserServlet extends HttpServlet {
 				throw new Exception("Invalid DDD number.");
 			}
 
-			String phone = phones[i];
+			String number = numbers[i];
 			String type = types[i];
-
-			Phone newPhone = new Phone(user, ddd, phone, type);
-			updatedPhones.add(newPhone);
+			
+//			this will run when a user has no phones (typically in creation)
+			if (oldPhones == null) {
+				Phone newPhone = new Phone(user, ddd, number, type);
+				updatedPhones.add(newPhone);
+				
+			} else {
+//				this will run when a user is being updated
+				Phone numberIsSame = oldPhones.stream().filter(oldPhone -> number.equals(oldPhone.getNumber())).findFirst().orElse(null);
+				if (numberIsSame != null) {
+					updatedPhones.add(numberIsSame);
+				} else {
+					Phone newPhone = new Phone(user, ddd, number, type);
+					updatedPhones.add(newPhone);
+				}
+			}
 		}
 
 		user.setPhones(updatedPhones);

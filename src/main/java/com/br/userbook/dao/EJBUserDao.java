@@ -145,15 +145,22 @@ public class EJBUserDao implements UserDao {
 		Validator validator = factory.getValidator();
 		Set<ConstraintViolation<User>> userConstraintViolations = validator.validate(user);
 		Set<ConstraintViolation<Phone>> phoneConstraintViolations = new HashSet<>();
-
-		User checkIfEmailExists = getUserByEmail(user.getEmail());
-		Phone checkIfPhoneExists = null;
+		
+		User existingUser = getUserByEmail(user.getEmail());
+		if (existingUser != null) {
+			if (existingUser.getId() != user.getId()) {
+				throw new EJBException("This email is already in use.");
+			}
+		}
 
 		for (int i = 0; i < user.getPhones().size(); i++) {
 			phoneConstraintViolations.addAll(validator.validate(user.getPhones().get(i)));
-			checkIfPhoneExists = getPhoneByNumber(user.getPhones().get(i).getNumber());
-			if (checkIfPhoneExists != null) {
-				break;
+			
+			Phone existingPhone = getPhoneByNumber(user.getPhones().get(i).getNumber());
+			if (existingPhone != null) {
+				if (existingPhone.getUser().getId() != user.getId()) {
+					throw new EJBException("The phone(s) must be unique.");
+				}				
 			}
 		}
 
@@ -161,10 +168,6 @@ public class EJBUserDao implements UserDao {
 			throw new CustomConstraintException("hi", userConstraintViolations);
 		} else if (phoneConstraintViolations.size() > 0) {
 			throw new CustomConstraintException(phoneConstraintViolations, "hi");
-		} else if (checkIfEmailExists != null) {
-			throw new EJBException("This email is already in use.");
-		} else if (checkIfPhoneExists != null) {
-			throw new EJBException("The phone(s) must be unique.");
 		} else {
 			return;
 		}
