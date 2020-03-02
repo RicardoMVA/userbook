@@ -44,9 +44,9 @@
                 <input class="form-control ddd" type="text" name="ddd" value="<c:out value='${phone.ddd}' />"/>
               </div>
 
-              <div class="col-4 col-sm-3 col-md-4 phone-col">
-                <label for="phone">Phone:</label>
-                <input class="form-control phone" type="text" name="phone" value="<c:out value='${phone.number}' />"/>
+              <div class="col-4 col-sm-3 col-md-4 number-col">
+                <label for="number">Number:</label>
+                <input class="form-control number" type="text" name="number" value="<c:out value='${phone.number}' />"/>
               </div>
 
               <div class="col-4 col-sm-4 col-md-6">
