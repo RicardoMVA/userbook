@@ -42,7 +42,8 @@ public class AuthFilter implements Filter {
 
 		} else {
 //			not logged in and not trying to login or register, so redirects to login page			
-			httpResponse.sendRedirect("/auth/login?msgType=alert-danger&msg=You must be logged in to access this page.&urlDest=/auth/login");
+			httpResponse.sendRedirect(
+					"/auth/login?msgType=alert-danger&msg=You must be logged in to access this page.&urlDest=/auth/login");
 		}
 	}
 
