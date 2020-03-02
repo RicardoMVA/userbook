@@ -69,13 +69,14 @@ public class UserServlet extends HttpServlet {
 			if (session.getAttribute("user") != null) {
 				response.sendRedirect("/?msgType=alert-success&msg=User created successfully!&urlDest=/");
 			} else {
-				response.sendRedirect("/auth/login?msgType=alert-success&msg=User created successfully!&urlDest=/auth/login");
+				response.sendRedirect(
+						"/auth/login?msgType=alert-success&msg=User created successfully!&urlDest=/auth/login");
 			}
 
 		} catch (EJBException ex) {
-			showException(request, response, ex);
+			response.sendRedirect("/users/new?msgType=alert-danger&msg=" + ex.getMessage() + "&urlDest=/users/new");
 		} catch (Exception ex) {
-			showException(request, response, ex);
+			response.sendRedirect("/users/new?msgType=alert-danger&msg=" + ex.getMessage() + "&urlDest=/users/new");
 		}
 	}
 
@@ -188,7 +189,7 @@ public class UserServlet extends HttpServlet {
 //				this will run when a user is being updated
 				Phone numberIsSame = oldPhones.stream().filter(oldPhone -> number.equals(oldPhone.getNumber()))
 						.findFirst().orElse(null);
-				
+
 				if (numberIsSame != null) {
 					updatedPhones.add(numberIsSame);
 				} else {

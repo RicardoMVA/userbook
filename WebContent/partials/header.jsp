@@ -53,27 +53,10 @@
 
 <div id="top" class="padding-navbar-top"></div>
 
-<div id="alert-container" class="container fixed-top 
-  <c:choose>
-    <c:when test='${alert != null}'> 
-      floating-alert-display
-    </c:when>
-    <c:otherwise>
-      floating-alert-hide
-    </c:otherwise>
-  </c:choose>">
+<div id="alert-container" class="container fixed-top floating-alert-hide">
 
-  <div id="alert-box" class="alert alert-dismissible show
-    <c:if test='${alert != null}'>
-      <c:out value='alert-success' />
-    </c:if>" 
-    role="alert">
-    
-    <span id="alert-text">
-      <c:if test='${alert != null}'>
-        <c:out value='${alert}' />
-      </c:if>
-    </span>
+  <div id="alert-box" class="alert alert-dismissible show" role="alert">   
+    <span id="alert-text"></span>
     <button type="button" class="close close-box" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
