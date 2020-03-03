@@ -164,7 +164,7 @@ public class UserServlet extends HttpServlet {
 			user.setImageLocation(request.getParameter("userImage"));
 		} else {
 			user.setImageLocation("/resources/images/empty.png");
-		}	
+		}
 
 		String[] ddds = request.getParameterValues("ddd");
 		String[] numbers = request.getParameterValues("number");
