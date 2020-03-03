@@ -1,4 +1,4 @@
-// logic for rendering alert box
+// logic for rendering and closing alert box
 const alertContainer = document.getElementById("alert-container");
 const closeBox = document.querySelector(".close-box");
 
@@ -6,6 +6,11 @@ closeBox.addEventListener("click", (e) => {
   alertContainer.classList.remove('floating-alert-display');
   alertContainer.classList.add('floating-alert-hide'); 
 });
+
+setTimeout(() => {
+  alertContainer.classList.remove('floating-alert-display');
+  alertContainer.classList.add('floating-alert-hide');
+}, 5000);
 
 const renderAlertBox = (text, alertType) => {
   alertContainer.classList.remove('floating-alert-hide');
