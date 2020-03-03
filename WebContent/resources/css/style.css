@@ -105,8 +105,13 @@ a.nav-link {
   box-shadow: 2px 3px 5px #e0e0e0;
 }
 
-.custom-form:hover {
+.custom-form:hover,
+.custom-form:focus {
   background-color: #e7e7e7;
+}
+
+.custom-form:required:valid {
+  border-bottom: 2px solid #00aafc;
 }
 
 .form-signin {

@@ -13,6 +13,7 @@
           
           <div class="col-md-6">
             <h3 class="card-text mb-4"><strong><c:out value="${user.name}" /></strong></h3>
+            <p class="card-text"><strong>Id: </strong><c:out value="${user.id}" /></p>
             <p class="card-text"><strong>Email: </strong><c:out value="${user.email}" /></p>
             <p class="card-text"><strong>Password: </strong><c:out value="${user.password}" /></p>
             <p class="card-text"><strong>Phones: </strong></p>

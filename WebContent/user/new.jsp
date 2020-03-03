@@ -14,27 +14,27 @@
 
         <div class="col-md-6">
           <label for="name">User Name:</label>
-          <input class="form-control custom-form" type="text" name="name"/>
+          <input class="form-control custom-form" type="text" name="name" minlength="4" maxlength="80" required/>
         </div>
 
         <div class="col-md-6">
           <label for="email">Email:</label>
-          <input class="form-control custom-form" type="text" name="email"/>
+          <input class="form-control custom-form" type="text" name="email" minlength="4" maxlength="80" required/>
         </div>
 
         <div class="col-md-6">
           <label for="password">Password:</label>
-          <input class="form-control custom-form" type="password" name="password"/>
+          <input class="form-control custom-form" type="password" name="password" minlength="8" maxlength="80" required/>
         </div>
 
         <div class="col-md-6">
           <label for="password">Confirm Password:</label>
-          <input class="form-control custom-form" type="password" name="passwordConfirm"/>
+          <input class="form-control custom-form" type="password" name="passwordConfirm" minlength="8" maxlength="80" required/>
         </div>
 
         <div class="col-md-12">
           <label for="userImage">User Image (URL):</label>
-          <input class="form-control custom-form" type="text" name="userImage"/>
+          <input class="form-control custom-form" type="text" name="userImage" minlength="1"/>
         </div>
 
         <div class="col-md-12">
@@ -45,12 +45,12 @@
           <div id="phoneForm" class="row mt-2">
             <div class="col-2 col-sm-2 col-md-2 ddd-col">
               <label for="ddd">DDD:</label>
-              <input class="form-control custom-form ddd" type="text" name="ddd"/>
+              <input class="form-control custom-form ddd" type="text" name="ddd" minlength="1" maxlength="2" required/>
             </div>
 
             <div class="col-4 col-sm-3 col-md-4 number-col">
               <label for="number">Number:</label>
-              <input class="form-control custom-form number" type="text" name="number"/>
+              <input class="form-control custom-form number" type="text" name="number" minlength="8" maxlength="9" required/>
             </div>
 
             <div class="col-4 col-sm-4 col-md-6">
