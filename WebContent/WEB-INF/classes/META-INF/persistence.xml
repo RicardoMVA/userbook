@@ -22,6 +22,10 @@
 				value="root" />
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5Dialect" />
+			<property name="hibernate.connection.useUnicode"
+				value="true" />
+			<property name="hibernate.connection.characterEncoding"
+				value="UTF-8" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="javax.persistence.sql-load-script-source"
 				value="META-INF/import.sql" />
