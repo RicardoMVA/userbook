@@ -160,7 +160,11 @@ public class UserServlet extends HttpServlet {
 		user.setName(request.getParameter("name"));
 		user.setEmail(request.getParameter("email"));
 		user.setPassword(request.getParameter("password"));
-		user.setImageLocation(request.getParameter("userImage"));
+		if (request.getParameter("userImage").length() > 0) {
+			user.setImageLocation(request.getParameter("userImage"));
+		} else {
+			user.setImageLocation("/resources/images/empty.png");
+		}	
 
 		String[] ddds = request.getParameterValues("ddd");
 		String[] numbers = request.getParameterValues("number");
