@@ -22,8 +22,8 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
         </li>
         <c:choose>
           <c:when test="${sessionScope.user != null}">

@@ -19,11 +19,11 @@
       <div class="row">
 
         <c:forEach var="user" items="${listUser}">
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
+          <div class="col-md-6 col-lg-4">
+            <div class="card mb-4 shadow">
               <img class="user-img" src="<c:out value='${user.imageLocation}' />">
               <div class="card-body">
-                <p class="card-text"><strong><c:out value="${user.name}" /></strong></p>
+                <h4 class="card-text mb-4"><strong><c:out value="${user.name}" /></strong></h4>
                 <p class="card-text"><c:out value="${user.email}" /></p>    
                 <p class="card-text">
                   (<c:out value="${user.phones[0].ddd}" />)

@@ -9,32 +9,32 @@
       <form class="form" action="/users/edit" id="putForm">
 
         <div class="col-md-12">
-          <h2>Edit User</h2>
+          <h2>Edit <c:out value='${user.name}' /></h2>
         </div>
 
         <div class="col-md-6">
           <label for="name">User Name:</label>
-          <input class="form-control" type="text" name="name"value="<c:out value='${user.name}' />"/>
+          <input class="form-control custom-form" type="text" name="name"value="<c:out value='${user.name}' />"/>
         </div>
 
         <div class="col-md-6">
           <label for="email">Email:</label>
-          <input class="form-control" type="text" name="email" value="<c:out value='${user.email}' />"/>
+          <input class="form-control custom-form" type="text" name="email" value="<c:out value='${user.email}' />"/>
         </div>
 
         <div class="col-md-6">
           <label for="password">Password:</label>
-          <input class="form-control" type="password" name="password"/>
+          <input class="form-control custom-form" type="password" name="password"/>
         </div>
 
         <div class="col-md-6">
           <label for="password">Confirm Password:</label>
-          <input class="form-control" type="password" name="passwordConfirm"/>
+          <input class="form-control custom-form" type="password" name="passwordConfirm"/>
         </div>
 
         <div class="col-md-12">
           <label for="userImage">User Image (URL):</label>
-          <input class="form-control" type="text" name="userImage"/>
+          <input class="form-control custom-form" type="text" name="userImage" value="<c:out value='${user.imageLocation}' />"/>
         </div>
 
         <div class="col-md-12">
@@ -46,17 +46,17 @@
             <div id="phoneForm" class="row mt-2">
               <div class="col-2 col-sm-2 col-md-2 ddd-col">
                 <label for="ddd">DDD:</label>
-                <input class="form-control ddd" type="text" name="ddd" value="<c:out value='${phone.ddd}' />"/>
+                <input class="form-control custom-form ddd" type="text" name="ddd" value="<c:out value='${phone.ddd}' />"/>
               </div>
 
               <div class="col-4 col-sm-3 col-md-4 number-col">
                 <label for="number">Number:</label>
-                <input class="form-control number" type="text" name="number" value="<c:out value='${phone.number}' />"/>
+                <input class="form-control custom-form number" type="text" name="number" value="<c:out value='${phone.number}' />"/>
               </div>
 
               <div class="col-4 col-sm-4 col-md-6">
                 <label for="type">Type:</label>
-                <select class="form-control type" name="type" required>
+                <select class="form-control custom-form type" name="type" required>
                   <option value="<c:out value='${phone.type}' />" selected><c:out value='${phone.type}' /></option>
                   <option value="Residential">Residential</option>
                   <option value="Cellphone">Cellphone</option>
@@ -68,11 +68,13 @@
         </div>
 
         <div class="col-md-12 mt-3">
-          <p id="addPhone">Add more phones</p>
+          <p id="addPhone"><i class="fas fa-plus-circle"></i> Add more phones</p>
         </div>
 
         <div class="col-md-12 mt-3">
-          <input type="submit" value="Save" id="putFormBtn"/>
+          <button type="submit" id="putFormBtn" class="btn btn-primary">
+            Save
+          </button>
         </div>
 
       </form>
