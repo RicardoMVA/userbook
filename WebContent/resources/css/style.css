@@ -62,23 +62,20 @@ a.nav-link {
 }
 
 .ddd-col {
-  padding-right: 0;
-}
-
-.number-col {
-  padding-left: 0;
+  text-align: center;
 }
 
 .ddd {
-  width: 43px;
+  width: 30px;
+  margin: 0 auto;
 }
 
 .number {
-  width: 120px;
+  width: 80px;
 }
 
 .type {
-  width: 150px;
+  width: 120px;
 }
 
 #addPhone {

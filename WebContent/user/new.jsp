@@ -48,7 +48,7 @@
               <input class="form-control custom-form ddd" type="text" name="ddd" minlength="1" maxlength="2" required/>
             </div>
 
-            <div class="col-4 col-sm-3 col-md-4 number-col">
+            <div class="col-4 col-sm-3 col-md-4">
               <label for="number">Number:</label>
               <input class="form-control custom-form number" type="text" name="number" minlength="8" maxlength="9" required/>
             </div>
