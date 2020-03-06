@@ -10,7 +10,7 @@
 		<description>Userbook user database</description>
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<jta-data-source>java:jboss/datasources/UserbookDS</jta-data-source>
+		<jta-data-source>java:jboss/datasources/userbookdb</jta-data-source>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
@@ -29,7 +29,7 @@
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="javax.persistence.sql-load-script-source"
 				value="META-INF/import.sql" />
-			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
 		</properties>
 	</persistence-unit>
 
