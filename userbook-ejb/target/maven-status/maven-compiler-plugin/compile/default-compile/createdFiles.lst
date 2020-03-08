@@ -1,0 +1,6 @@
+com\br\userbook\exception\CustomConstraintException.class
+com\br\userbook\model\User.class
+com\br\userbook\ejb\UserDao.class
+com\br\userbook\ejb\UserDaoLocal.class
+com\br\userbook\model\Phone.class
+com\br\userbook\ejb\ResourceProducer.class

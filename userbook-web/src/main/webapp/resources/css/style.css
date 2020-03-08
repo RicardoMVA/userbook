@@ -1,0 +1,142 @@
+html {
+  overflow-y: scroll;
+}
+
+.logo-img {
+  object-fit: cover;
+  height: 30vh;
+  width: 80%;
+  border-radius: 20px;
+}
+
+i {
+  margin-right: 3px;
+}
+
+.navbar {
+  box-shadow: 0px 1px 2px #414141;
+  background-color: #233548 !important;
+}
+
+.bg-light.navbar-bottom {
+  background-color: #e9ecef !important;
+}
+
+.navbar-bottom {
+  position: fixed;
+  z-index: 1030;
+  bottom: 0px;
+  width: 100%;
+  padding: 0;
+}
+
+a.nav-link {
+  text-align: center;
+  margin: 0 7px;
+}
+
+.padding-navbar-top {
+  padding-top: 56px; 
+}
+
+.padding-navbar-bottom {
+  padding-bottom: 40px;
+}
+
+.floating-alert-hide {
+  display: none;  
+}
+
+.floating-alert-display {
+  display: block;
+  top: 60px;
+}
+
+.btn-outline-secondary {
+  color: #e6e9e4;
+}
+
+.form {
+  width: 100%;
+  display: contents;
+}
+
+.ddd-col {
+  text-align: center;
+}
+
+.ddd {
+  width: 30px;
+  margin: 0 auto;
+}
+
+.number {
+  width: 80px;
+}
+
+.type {
+  width: 120px;
+}
+
+#addPhone {
+  width: 151px;
+  transition: color .25s ease-in-out;
+  -webkit-transition: color .25s ease-in-out;
+}
+
+#addPhone:hover {
+  color: #9e9e9e;
+  cursor: pointer;
+}
+
+.custom-form {
+  background-color: #f2f2f2;
+  height: calc(2rem);
+  padding: .125rem .50rem;
+  border-bottom: 2px solid #ced4da;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  font-size: 0.8rem;
+  border-radius: 0px;
+  box-shadow: 2px 3px 5px #e0e0e0;
+}
+
+.custom-form:hover,
+.custom-form:focus {
+  background-color: #e7e7e7;
+}
+
+.custom-form:required:valid {
+  border-bottom: 2px solid #00aafc;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.card-body {
+  background-color: #233548;
+  color: #e6e9e4;
+  border-radius: 0 0 0.25em 0.25em;
+}
+
+.card-body.user-card {
+  border-radius: 0.25em;
+}
+
+.user-img {
+  height: 35vh;
+  object-fit: cover;
+  border-radius: 0.25em 0.25em 0 0;
+}
+
+.user-img-detail {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  border-radius: 0.25em;
+}

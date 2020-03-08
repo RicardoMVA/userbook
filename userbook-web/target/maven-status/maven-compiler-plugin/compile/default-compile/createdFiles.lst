@@ -1,0 +1,4 @@
+com\br\userbook\controller\UserServlet.class
+com\br\userbook\controller\IndexServlet.class
+com\br\userbook\filters\AuthFilter.class
+com\br\userbook\controller\AuthServlet.class
