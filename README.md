@@ -1,6 +1,8 @@
 <h1>Userbook</h1>
 
-<p>A web application for registering people and their informations</p>
+<p>A web application for registering people and their informations.</p>
+
+<p>Runs on Wildfly server version 18 and uses JRE 1.8.</p>
 
 <h3>Steps to run:</h3>
 
@@ -12,11 +14,11 @@
   <li>
     <p>Import project to Eclipse as 'existing Maven project'
       <br>
-      Add Wildfly server to Eclipse and use it to run project on server
+      Add Wildfly 18 server to Eclipse and use it to run project on server
       <br>
       <strong>or</strong>
       <br>
-      Use <code>./standalone.sh</code> in wildfly/bin to start Wildfly process
+      Use <code>./standalone.sh</code> in wildfly/bin to start Wildfly 18 process
       <br>
       Build project with <code>mvn clean org.wildfly.plugins:wildfly-maven-plugin:deploy</code>
     </p>
