@@ -8,14 +8,14 @@ Here are the bugs encountered, when trying to do the build process using the com
 
 <br>
 
-<strong>Error 1:</strong>
+<p><strong>Error 1:</strong></p>
 <code>org.jboss.weld.exceptions.DeploymentException: WELD-001408: Unsatisfied dependencies for type UserDao with qualifiers @Default
 [ERROR]   at injection point [BackedAnnotatedField] @Inject private com.br.userbook.controller.AuthServlet.userDao
 [ERROR]   at com.br.userbook.controller.AuthServlet.userDao(AuthServlet.java:0)</code>
 
 <br>
 
-<strong>Error 2:</strong>
+<p><strong>Error 2:</strong></p>
 <code>Failed to execute goal deploy: {"WFLYCTL0062: Composite operation failed and was rolled back. Steps that failed:" => {"Operation step-1" => {"WFLYCTL0080: Failed services" => {"jboss.deployment.unit.\"userbook-ear.ear\".WeldStartService" => "Failed to start service
 [ERROR]     Caused by: org.jboss.weld.exceptions.DeploymentException: WELD-001409: Ambiguous dependencies for type EntityManager with qualifiers @Default
 [ERROR]   at injection point [BackedAnnotatedField] @Inject private com.br.userbook.ejb.UserDao.entityManager
