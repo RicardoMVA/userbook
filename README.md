@@ -26,16 +26,26 @@
     <p>Configuration of the 'standalone.xml' file in the Wildfly folder:</p>
     <p>Add this in 'undertow' subsystem to grant access to css and js files:
 
-        <subsystem xmlns="urn:jboss:domain:undertow:10.0" default-server="default-server" default-virtual-host="default-host" default-servlet-container="default" default-security-domain="other" statistics-enabled="${wildfly.undertow.statistics-enabled:${wildfly.statistics-enabled:false}}">
+        <subsystem xmlns="urn:jboss:domain:undertow:10.0"
+         default-server="default-server"
+         default-virtual-host="default-host"
+         default-servlet-container="default"
+         default-security-domain="other"
+         statistics-enabled="${wildfly.undertow.statistics-enabled:${wildfly.statistics-enabled:false}}">
             <server name="default-server">
-                <host name="default-host" alias="localhost" default-web-module="userbook.war">
-                    <location name="/" handler="welcome-content"/>
-                    <location name="/resources" handler="resources"/>
+                <host name="default-host" 
+                alias="localhost" default-web-module="userbook.war">
+                    <location name="/" 
+                    handler="welcome-content"/>
+                    <location name="/resources" 
+                    handler="resources"/>
                     <http-invoker security-realm="ApplicationRealm"/>
                 </host>
             </server>
             <handlers>
-                <file name="resources" path="[your_relative_path]\userbook\src\main\webapp\resources\" directory-listing="false"/>
+                <file name="resources" 
+                path="[your_relative_path]\userbook\src\main\webapp\resources\" 
+                directory-listing="false"/>
             </handlers>
         </subsystem> 
   </p>
@@ -44,7 +54,10 @@
   <li>
     <p>Add this in 'datasources' to connect to database:
 
-        <datasource jndi-name="java:jboss/datasources/userbookdb" pool-name="userbookdb" enabled="true" use-java-context="true">
+        <datasource jndi-name="java:jboss/datasources/userbookdb" 
+        pool-name="userbookdb" 
+        enabled="true" 
+        use-java-context="true">
             <connection-url>jdbc:mysql://localhost:3306/userbookdb?serverTimezone=America/Sao_Paulo</connection-url>
             <driver>mysql</driver>
             <security>
@@ -59,9 +72,17 @@
     <p>Add this in 'drivers':
 
         <driver name="mysql" module="com.mysql">
-          <xa-datasource-class>com.mysql.cj.jdbc.MysqlXADataSource</xa-datasource-class>
+          <xa-datasource-class>
+          com.mysql.cj.jdbc.MysqlXADataSource
+          </xa-datasource-class>
         </driver>
       </code>  
   </p>
   </li>
 </ol>
+
+<p>This should lead to output on <code>localhost:8080</code> similar to this:<br></p>
+
+![login image](login.jpg)
+
+<p><br>To login, simply use email <code>ricardo@email.com</code> and password <code>12345678</code>, or any of the users that populate the 'User' table.</p>
